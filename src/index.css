@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  background-color: #ffffff;
+  color: #0F172A;
+}
+
+body {
+  @apply bg-white text-dark-900 antialiased font-sans font-light overflow-x-hidden selection:bg-primary-500/30 selection:text-primary-900;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-600;
+}
+
+/* ── Utility Classes ───────────────────────────────── */
+.bg-radial-dots {
+  background-image: radial-gradient(#3B82F6 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-radial-dots-white {
+  background-image: radial-gradient(circle at center, white 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-fade-edges-white {
+  background: linear-gradient(to right, white 0%, transparent 15%, transparent 85%, white 100%);
+}
+
+/* ── Horizontal Scroll helpers ─────────────────────── */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* scrollbar-width: none; */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Custom Animated Glow Border ───────────────────── */
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glow-rotate {
+  to {
+    --glow-angle: 360deg;
+  }
+}
+
+.animated-glow-border {
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  background: conic-gradient(
+    from var(--glow-angle),
+    rgba(59, 130, 246, 1) 0%,
+    rgba(236, 72, 153, 1) 50%,
+    rgba(59, 130, 246, 1) 100%
+  ) border-box;
+  animation: glow-rotate 2.5s linear infinite;
+  border: 2px solid transparent;
+}
+
+.animated-glow-bg {
+  background: conic-gradient(
+    from var(--glow-angle),
+    rgba(59, 130, 246, 1) 0%,
+    rgba(236, 72, 153, 1) 50%,
+    rgba(59, 130, 246, 1) 100%
+  );
+  animation: glow-rotate 2.5s linear infinite;
+}
