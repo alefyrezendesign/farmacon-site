@@ -257,6 +257,7 @@ const SecaoHero = () => {
                             src={isOptimized ? "/logo/simbolo_branca.png" : "/logo/simbolo.png"} 
                             alt="Farmacon Toggle" 
                             className={`w-full h-full object-contain ${isOptimized ? 'p-[3px]' : 'p-[3px]'}`}
+                            fetchPriority="high"
                           />
                         </m.div>
                       </button>
@@ -292,7 +293,7 @@ const SecaoHero = () => {
                 <div className="flex -space-x-2.5">
                   {['small-fotos-100+1.webp', 'small-fotos-100+2.webp', 'small-fotos-100+3.webp', 'small-fotos-100+4.webp'].map((img, i) => (
                     <div key={i} className={`w-9 h-9 rounded-full border-2 border-white bg-surface-100 overflow-hidden shadow-sm transition-all duration-700 ${isOptimized ? 'grayscale-0' : 'grayscale'}`}>
-                      <img src={`/small-fotos-100/${img}`} alt="Cliente Farmacon" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                      <img src={`/small-fotos-100/${img}`} alt="Cliente Farmacon" className="w-full h-full object-cover" fetchPriority="high" decoding="async" />
                     </div>
                   ))}
                   <div className="w-9 h-9 rounded-full border-2 border-white flex items-center justify-center text-[10px] font-bold shadow-sm bg-primary-100 text-primary-700 z-10">

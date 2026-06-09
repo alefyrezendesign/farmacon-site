@@ -17,6 +17,7 @@ const ContatoHero = () => {
               src="/background/background-contato.webp" 
               alt="Fundo Contato" 
               className="w-full h-full object-cover" 
+              fetchPriority="high"
             />
           </div>
 

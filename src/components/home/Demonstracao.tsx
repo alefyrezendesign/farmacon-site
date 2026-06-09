@@ -62,6 +62,7 @@ const Demonstracao = () => {
             overflow: 'hidden',
             scale: cardScale,
             opacity: cardOpacity,
+            willChange: 'transform, opacity, border-radius',
           }}
         >
           {/* Parallax image */}
@@ -74,6 +75,7 @@ const Demonstracao = () => {
               width: '100%',
               height: '140%',
               top: '-20%',
+              willChange: 'transform',
             }}
           >
             <img
