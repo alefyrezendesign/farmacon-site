@@ -4,7 +4,7 @@ import { TypewriterBadge } from '../ui/TypewriterBadge';
 
 const outrasUnidades = [
   { cidade: "Rio de Janeiro", estado: "RJ", pais: "Brasil", flagCode: "br" },
-  { cidade: "Aparecida de Goiânia", estado: "GO", pais: "Brasil", flagCode: "br" },
+  { cidade: "Goiânia", estado: "GO", pais: "Brasil", flagCode: "br" },
   { cidade: "Curitiba", estado: "PR", pais: "Brasil", flagCode: "br" },
   { cidade: "Lisboa", estado: "", pais: "Portugal", flagCode: "pt" },
 ];
