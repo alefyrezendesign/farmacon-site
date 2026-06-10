@@ -49,28 +49,14 @@ const solutions = [
   },
 ];
 
-const SolutionCard = ({ solution, index, scrollYProgress, isDesktop }: { solution: any, index: number, scrollYProgress: MotionValue<number>, isDesktop: boolean }) => {
-  const isEarly = index < 2;
-
-  // A animação de scroll (para cards >= 2)
-  const start = 0.12 + (index * 0.08); 
-  const end = start + 0.15;
-  
-  const scrollOpacity = useTransform(scrollYProgress, [start, end], [0, 1]);
-  const scrollX = useTransform(scrollYProgress, [start, end], [60, 0]);
-
+const SolutionCard = ({ solution, index, isDesktop }: { solution: any, index: number, isDesktop: boolean }) => {
   return (
-    <m.div 
-      style={(isDesktop && !isEarly) ? { opacity: scrollOpacity, x: scrollX } : {}}
-      initial={(!isDesktop || isEarly) ? { opacity: 0, y: 30 } : undefined}
-      whileInView={(!isDesktop || isEarly) ? { opacity: 1, y: 0 } : undefined}
-      viewport={(!isDesktop || isEarly) ? { once: true, margin: "0px 0px -50px 0px" } : undefined}
-      transition={
-        isDesktop && isEarly 
-          ? { duration: 0.7, delay: 1.2 + (index * 0.15), ease: [0.25, 0.1, 0.25, 1] } 
-          : { duration: 0.5 }
-      }
-      className="group w-full lg:w-[20vw] xl:w-[14vw] flex-shrink-0 flex flex-col justify-start px-2 md:px-5 relative py-8 md:py-12 lg:py-20 min-h-[auto] lg:min-h-[65vh] cursor-pointer border-b border-surface-100 lg:border-none last:border-0"
+    <m.div
+      initial={!isDesktop ? { opacity: 0, y: 30 } : undefined}
+      whileInView={!isDesktop ? { opacity: 1, y: 0 } : undefined}
+      viewport={!isDesktop ? { once: true, margin: "0px 0px -50px 0px" } : undefined}
+      transition={{ duration: 0.5 }}
+      className="group flex flex-col justify-start px-2 md:px-5 relative py-8 md:py-12 lg:pt-8 lg:pb-12 min-h-[auto] cursor-pointer border-b border-surface-100 lg:border-none last:border-0"
     >
       {/* Giant Index Number */}
       <div className="text-[5rem] md:text-[7rem] font-medium text-slate-800 transition-colors duration-500 group-hover:text-primary-600 mb-8 md:mb-10 tracking-tighter leading-none">
@@ -107,11 +93,12 @@ const ResumoSolucoes = () => {
       setIsDesktop(desktop);
 
       if (desktop && scrollContainerRef.current) {
-        // Largura total de todos os itens (scrollWidth) - largura da tela (innerWidth)
+        // Largura total de todos os itens (scrollWidth)
         const totalWidth = scrollContainerRef.current.scrollWidth;
-        const viewportWidth = window.innerWidth;
+        // A largura visível disponível apenas para os cards (o container pai que possui overflow-hidden)
+        const visibleWidth = scrollContainerRef.current.parentElement?.clientWidth || window.innerWidth;
         // O valor negativo exato que a div precisa se mover para a direita encostar na borda direita
-        const range = Math.max(0, totalWidth - viewportWidth);
+        const range = Math.max(0, totalWidth - visibleWidth);
         // Usamos -range para mover para a esquerda
         setScrollRange(-range); 
       }
@@ -139,7 +126,7 @@ const ResumoSolucoes = () => {
       id="solucoes" 
       className="relative h-auto lg:h-[380vh] bg-white overflow-hidden lg:overflow-visible" 
     >
-      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex flex-col lg:flex-row lg:items-center overflow-hidden pt-20 pb-16 lg:pb-0 lg:pt-20">
+      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex flex-col lg:flex-row lg:items-center overflow-hidden pt-20 pb-16 lg:py-0">
         
         {/* Background decoration */}
         <div
@@ -147,15 +134,13 @@ const ResumoSolucoes = () => {
         />
         <div className="absolute top-0 w-full h-[400px] bg-gradient-to-b from-white to-transparent pointer-events-none" />
 
-        {/* Horizontal Scroll Container (Animado pelo Framer Motion) */}
-        <m.div 
-          ref={scrollContainerRef}
-          style={isDesktop ? { x } : {}} 
-          className="flex flex-col lg:flex-row lg:items-stretch gap-2 md:gap-8 lg:gap-16 px-5 sm:px-8 md:px-24 lg:px-32 w-full lg:w-max relative z-10"
+        {/* Container fixo que engloba as duas colunas */}
+        <div 
+          className="flex flex-col lg:flex-row lg:items-stretch gap-2 md:gap-8 lg:gap-10 xl:gap-16 px-5 sm:px-8 md:px-24 lg:px-32 w-full relative z-10"
         >
           
-          {/* Slide 1: Intro / MenuPrincipal */}
-          <div className="w-full lg:w-[45vw] xl:w-[40vw] flex-shrink-0 flex flex-col justify-center items-start px-2 sm:px-4 pl-0 py-4 lg:py-8 mb-8 lg:mb-0">
+          {/* Slide 1: Intro / MenuPrincipal (Coluna Esquerda Fixa) */}
+          <div className="w-full lg:w-[38vw] xl:w-[32vw] 2xl:w-[28vw] flex-shrink-0 flex flex-col justify-center items-start px-2 sm:px-4 pl-0 py-4 lg:py-8 mb-8 lg:mb-0 relative z-20">
             
             <m.div
               initial={{ opacity: 0, y: 15 }}
@@ -189,7 +174,10 @@ const ResumoSolucoes = () => {
               }}
               className="text-[1rem] md:text-[1.1rem] text-slate-600 font-medium leading-relaxed max-w-2xl mb-8"
             >
-              Nossas soluções resolvem problemas reais. Combinamos expertise contábil, tributária e financeira para conectar sua farmácia às estratégias mais aderentes ao seu momento de crescimento.
+              Nossas soluções resolvem problemas reais. Combinamos<br />
+              expertise contábil, tributária e financeira para conectar<br />
+              sua farmácia às estratégias mais aderentes ao seu<br />
+              momento de crescimento.
             </m.p>
 
             <div className="mt-6 md:mt-12 flex items-center gap-4 text-primary-600 font-semibold tracking-wide">
@@ -198,19 +186,32 @@ const ResumoSolucoes = () => {
             </div>
           </div>
 
-          {/* Slides 2-7: Solution Cards */}
-          <div className="flex flex-col lg:flex-row lg:items-stretch gap-2 lg:gap-0">
-            {solutions.map((solution, index) => (
-              <SolutionCard 
-                key={solution.id}
-                solution={solution}
-                index={index}
-                scrollYProgress={scrollYProgress}
-                isDesktop={isDesktop}
-              />
-            ))}
+          {/* Slides 2-7: Solution Cards (Coluna Direita Animada) */}
+          <div 
+            className="flex-1 overflow-hidden relative flex flex-col justify-center lg:pt-12"
+            style={isDesktop ? {
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0px, black 40px, black calc(100% - 140px), transparent 100%)',
+              maskImage: 'linear-gradient(to right, transparent 0px, black 40px, black calc(100% - 140px), transparent 100%)',
+              transform: 'translateZ(0)',
+              isolation: 'isolate'
+            } : {}}
+          >
+            <m.div 
+              ref={scrollContainerRef}
+              style={isDesktop ? { x } : {}} 
+              className="grid grid-cols-1 lg:grid-cols-6 w-full lg:w-[calc(150%-40px)] lg:px-[40px] gap-2 lg:gap-0"
+            >
+              {solutions.map((solution, index) => (
+                <SolutionCard 
+                  key={solution.id}
+                  solution={solution}
+                  index={index}
+                  isDesktop={isDesktop}
+                />
+              ))}
+            </m.div>
           </div>
-        </m.div>
+        </div>
       </div>
     </section>
   );
