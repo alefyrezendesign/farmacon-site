@@ -11,10 +11,10 @@ type Stat = {
 };
 
 const stats: Stat[] = [
-  { value: '9,2%', text: 'do Market Share no Brasil', desktopHeight: 'h-[150px]', mobileHeight: 'h-[200px]', delay: 0.1, highlight: false },
-  { value: '1.800', text: 'Municípios atendidos em todo o Brasil', desktopHeight: 'h-[200px]', mobileHeight: 'h-[240px]', delay: 0.2, highlight: false },
-  { value: '6.200+', text: 'Empresários confiam em nossa expertise', desktopHeight: 'h-[290px]', mobileHeight: 'h-[300px]', delay: 0.3, highlight: false },
-  { value: '22%', text: 'Nossos clientes cresceram em média 22% a mais do que o mercado', desktopHeight: 'h-full', mobileHeight: 'h-[380px]', delay: 0.4, highlight: true },
+  { value: '9,2%', text: 'do Market Share no Brasil', desktopHeight: 'h-[150px]', mobileHeight: 'h-[150px]', delay: 0.1, highlight: false },
+  { value: '1.800', text: 'Municípios atendidos em todo o Brasil', desktopHeight: 'h-[200px]', mobileHeight: 'h-[150px]', delay: 0.2, highlight: false },
+  { value: '6.200+', text: 'Empresários confiam em nossa expertise', desktopHeight: 'h-[290px]', mobileHeight: 'h-[260px]', delay: 0.3, highlight: false },
+  { value: '22%', text: 'Nossos clientes cresceram em média 22% a mais do que o mercado', desktopHeight: 'h-full', mobileHeight: 'h-[260px]', delay: 0.4, highlight: true },
 ];
 
 const AnimatedBarChart = ({ delay }: { delay: number }) => {
@@ -27,7 +27,7 @@ const AnimatedBarChart = ({ delay }: { delay: number }) => {
   ];
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-[50%] w-full z-0 pointer-events-none flex items-end overflow-hidden">
+    <div className="absolute bottom-0 left-0 right-0 h-[50%] w-full z-0 pointer-events-none flex items-end">
       <div className="w-full h-full flex items-end gap-0 px-0 pb-0">
         {bars.map((bar, i) => (
           <div key={i} className="flex-1 h-full relative flex items-end justify-center">
@@ -78,7 +78,7 @@ const StatCard = ({ stat, heightClass, className = '' }: { stat: Stat; heightCla
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.1 }}
     transition={{ duration: 0.8, delay: stat.delay, ease: [0.22, 1, 0.36, 1] }}
-    className={`w-full rounded-3xl p-6 lg:p-7 flex flex-col justify-start items-start relative overflow-hidden ${
+    className={`w-full rounded-[24px] lg:rounded-3xl p-4 lg:p-7 flex flex-col justify-start items-start relative overflow-hidden ${
       stat.highlight
         ? 'bg-white text-[#2563EB] shadow-xl shadow-black/10'
         : 'bg-[#3b82f6]/30 backdrop-blur-[16px] border border-white/20 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]'
@@ -89,13 +89,13 @@ const StatCard = ({ stat, heightClass, className = '' }: { stat: Stat; heightCla
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.5, delay: stat.delay + 0.4 }}
-      className="flex flex-col gap-2 relative z-10"
+      className="flex flex-col gap-1 lg:gap-2 relative z-10"
     >
-      <div className={`text-[2.8rem] lg:text-[3.5rem] font-bold tracking-tighter leading-none ${stat.highlight ? 'text-[#2563EB]' : 'text-white'}`}>
+      <div className={`text-[1.8rem] sm:text-[2.8rem] lg:text-[3.5rem] font-bold tracking-tighter leading-none ${stat.highlight ? 'text-[#2563EB]' : 'text-white'}`}>
         {stat.value}
       </div>
 
-      <p className={`text-[13px] lg:text-[14px] font-medium leading-snug ${stat.highlight ? 'text-slate-700' : 'text-blue-100'}`}>
+      <p className={`text-[11px] sm:text-[13px] lg:text-[14px] font-medium leading-snug ${stat.highlight ? 'text-slate-700' : 'text-blue-100'}`}>
         {stat.text}
       </p>
     </m.div>
@@ -134,7 +134,7 @@ const AuthorityTextContent = () => (
     badgeText="Resultados reais no mercado farmacêutico"
     titleLines={["Somos a maior da", "América Latina"]}
     subtitle="Todos os anos, nossos clientes crescem acima da média do mercado. Todos os dias, empresários tomam decisões mais seguras com base em números claros."
-    align="left"
+    align="mobile-center"
     className="mb-0"
     inverted={true}
   />
@@ -144,23 +144,28 @@ const NumerosAutoridade = () => {
   return (
     <section 
       id="sobre-nos" 
-      className="relative z-20 bg-[#2563eb] bg-cover bg-center w-full shadow-[0_-20px_60px_rgba(0,0,0,0.06)] lg:min-h-screen py-24 lg:py-0 overflow-hidden lg:flex lg:flex-col lg:justify-center"
+      className="relative z-20 bg-[#2563eb] bg-cover bg-center w-full shadow-[0_-20px_60px_rgba(0,0,0,0.06)] lg:min-h-screen py-20 lg:py-0 overflow-hidden lg:flex lg:flex-col lg:justify-center"
       style={{ backgroundImage: "url('/background/bg-azul.png')" }}
     >
       <div className="container mx-auto px-5 md:px-10 xl:px-16 lg:h-full relative z-10">
         <div className="w-full max-w-7xl mx-auto lg:h-full">
           <div className="lg:hidden flex flex-col">
-            <div className="mb-14 -mt-4">
+            <div className="mb-4">
               <AuthorityTextContent />
             </div>
 
-            <div className="w-full relative -mx-5 px-5">
-              <div className="flex flex-row overflow-x-auto hide-scrollbar snap-x snap-mandatory items-end gap-4 pb-6 pt-4 w-full">
-                {stats.map((stat, idx) => (
-                  <div key={idx} className="snap-center shrink-0 w-[260px]">
-                    <StatCard stat={stat} heightClass={stat.mobileHeight} />
-                  </div>
-                ))}
+            <div className="w-full relative mt-0">
+              <div className="flex gap-3 w-full">
+                {/* Coluna Esquerda: Curto + Longo */}
+                <div className="flex flex-col gap-3 flex-1 w-1/2">
+                  <StatCard stat={stats[0]} heightClass={stats[0].mobileHeight} />
+                  <StatCard stat={stats[2]} heightClass={stats[2].mobileHeight} />
+                </div>
+                {/* Coluna Direita: Longo + Curto */}
+                <div className="flex flex-col gap-3 flex-1 w-1/2">
+                  <StatCard stat={stats[3]} heightClass={stats[3].mobileHeight} />
+                  <StatCard stat={stats[1]} heightClass={stats[1].mobileHeight} />
+                </div>
               </div>
             </div>
           </div>

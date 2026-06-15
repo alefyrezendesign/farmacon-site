@@ -11,7 +11,7 @@ interface SectionHeaderProps {
   title?: ReactNode;
   subtitleLines?: string[];
   subtitle?: ReactNode;
-  align?: 'left' | 'center';
+  align?: 'left' | 'center' | 'mobile-center';
   className?: string;
   inverted?: boolean;
 }
@@ -29,9 +29,16 @@ const SectionHeader = ({
   inverted = false
 }: SectionHeaderProps) => {
   const isCenter = align === 'center';
+  const isMobileCenter = align === 'mobile-center';
+  
+  const alignClasses = isCenter 
+    ? 'items-center text-center mx-auto' 
+    : isMobileCenter 
+      ? 'items-center text-center md:items-start md:text-left mx-auto md:mx-0'
+      : 'items-start text-left';
   
   return (
-    <div className={`flex flex-col ${isCenter ? 'items-center text-center mx-auto' : 'items-start text-left'} max-w-4xl mb-16 md:mb-24 ${className}`}>
+    <div className={`flex flex-col ${alignClasses} max-w-4xl mb-16 md:mb-24 ${className}`}>
       {/* Badge */}
       {customBadge ? (
         <m.div
@@ -39,12 +46,12 @@ const SectionHeader = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className={`mb-6 ${isCenter ? 'mx-auto' : ''}`}
+          className={`mb-6 ${isCenter ? 'mx-auto' : isMobileCenter ? 'mx-auto md:mx-0' : ''}`}
         >
           {customBadge}
         </m.div>
       ) : badgeText ? (
-        <TypewriterBadge text={badgeText} icon={badgeIcon} inverted={inverted} className={`mb-6 ${isCenter ? 'mx-auto' : ''}`} />
+        <TypewriterBadge text={badgeText} icon={badgeIcon} inverted={inverted} className={`mb-6 ${isCenter ? 'mx-auto' : isMobileCenter ? 'mx-auto md:mx-0' : ''}`} />
       ) : null}
 
       {/* Title */}
@@ -66,7 +73,7 @@ const SectionHeader = ({
 
       {/* Subtitle */}
       {subtitleLines ? (
-        <div className={`text-[1rem] md:text-[1.1rem] font-medium leading-relaxed max-w-2xl ${isCenter ? 'mx-auto' : ''} ${inverted ? 'text-white/80' : 'text-slate-600'}`}>
+        <div className={`text-[15px] md:text-[1.1rem] font-medium leading-relaxed max-w-2xl ${isCenter ? 'mx-auto' : ''} ${inverted ? 'text-white/80' : 'text-slate-600'}`}>
           <AnimatedTitle lines={subtitleLines} delay={badgeText ? 0.9 : 0.4} />
         </div>
       ) : subtitle ? (
@@ -75,7 +82,7 @@ const SectionHeader = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.6, delay: badgeText ? 0.9 : 0.1 }}
-          className={`text-[1rem] md:text-[1.1rem] font-medium leading-relaxed max-w-2xl ${isCenter ? 'mx-auto' : ''} ${inverted ? 'text-white/80' : 'text-slate-600'}`}
+          className={`text-[15px] md:text-[1.1rem] font-medium leading-relaxed max-w-2xl ${isCenter ? 'mx-auto' : ''} ${inverted ? 'text-white/80' : 'text-slate-600'}`}
         >
           {subtitle}
         </m.div>

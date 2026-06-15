@@ -106,7 +106,7 @@ const Beneficios = () => {
   };
 
   return (
-    <section className="pt-40 pb-0 md:pt-52 lg:pt-64 md:pb-0 -mb-[190px] relative w-full bg-transparent z-10">
+    <section className="pt-16 pb-12 md:pt-52 lg:pt-64 md:pb-0 mb-0 lg:-mb-[190px] relative w-full bg-white z-10">
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10">
 
         {/* Two-column layout: text left, accordion right */}
@@ -120,16 +120,16 @@ const Beneficios = () => {
               badgeText="Evolução Estratégica"
               titleLines={["O mercado farmacêutico", "está evoluindo."]}
               subtitle={
-                <div className="relative">
+                <div className="grid">
                   {/* Invisible spacer — always renders the longest phrase to lock height */}
-                  <span className="invisible block" aria-hidden="true">
+                  <div className="invisible col-start-1 row-start-1" aria-hidden="true">
                     Sua farmácia não precisa apenas mudar de contabilidade.{' '}
                     <span className="font-semibold">
                       Ela precisa de segurança em cada operação fiscal.
                     </span>
-                  </span>
+                  </div>
                   {/* Visible text overlaid */}
-                  <span className="absolute inset-0">
+                  <div className="col-start-1 row-start-1">
                     Sua farmácia não precisa apenas mudar de contabilidade.{' '}
                     <span className="text-dark-900 font-semibold">
                       {displayText}
@@ -139,10 +139,10 @@ const Beneficios = () => {
                         className="inline-block w-[2px] h-[18px] md:h-[20px] bg-dark-900 ml-1 align-middle"
                       />
                     </span>
-                  </span>
+                  </div>
                 </div>
               }
-              align="left"
+              align="mobile-center"
             />
           </div>
 

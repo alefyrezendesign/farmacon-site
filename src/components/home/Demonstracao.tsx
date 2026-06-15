@@ -1,6 +1,21 @@
 import { useRef } from 'react';
 import { m, useScroll, useTransform  } from 'framer-motion';
 
+const AnimatedWord = ({ word, progress, i, total }: { word: string, progress: any, i: number, total: number }) => {
+  const start = 0.30 + (i / total) * 0.15;
+  const end = start + 0.05;
+  const opacity = useTransform(progress, [start, end], [0, 1]);
+  const y = useTransform(progress, [start, end], [30, 0]);
+  
+  return (
+    <span style={{ display: 'inline-block', overflow: 'hidden', paddingBottom: '0.1em' }}>
+      <m.span style={{ display: 'inline-block', opacity, y }}>
+        {word}
+      </m.span>
+    </span>
+  );
+};
+
 const Demonstracao = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -15,24 +30,8 @@ const Demonstracao = () => {
   const cardOpacity = useTransform(scrollYProgress, [0.05, 0.15], [0, 1]);
 
   // Parallax image (subtle throughout)
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.3]);
-
-  // Phase 2 (0.28 → 0.40): Text enters after card is fully grown
-  const line1Opacity = useTransform(scrollYProgress, [0.30, 0.36], [0, 1]);
-  const line1Y = useTransform(scrollYProgress, [0.30, 0.36], [50, 0]);
-
-  const line2Opacity = useTransform(scrollYProgress, [0.33, 0.39], [0, 1]);
-  const line2Y = useTransform(scrollYProgress, [0.33, 0.39], [50, 0]);
-
-  const line3Opacity = useTransform(scrollYProgress, [0.36, 0.42], [0, 1]);
-  const line3Y = useTransform(scrollYProgress, [0.36, 0.42], [50, 0]);
-
-  const line4Opacity = useTransform(scrollYProgress, [0.39, 0.45], [0, 1]);
-  const line4Y = useTransform(scrollYProgress, [0.39, 0.45], [50, 0]);
-
-  // Phase 3 (0.45 → 0.75): Section stays pinned, just parallax
-  // Phase 4 (0.75 → 1): Next section covers it (handled by App.tsx z-index)
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
 
   return (
     <div ref={wrapperRef} style={{ position: 'relative', height: '100%' }}>
@@ -63,6 +62,7 @@ const Demonstracao = () => {
             scale: cardScale,
             opacity: cardOpacity,
             willChange: 'transform, opacity, border-radius',
+            backgroundColor: '#000',
           }}
         >
           {/* Parallax image */}
@@ -73,23 +73,20 @@ const Demonstracao = () => {
               y: imageY,
               scale: imageScale,
               width: '100%',
-              height: '140%',
-              top: '-20%',
+              height: '115%',
+              top: '-7.5%',
               willChange: 'transform',
             }}
           >
-            <img
-              src="/background/background-feira-frase.webp"
-              alt="Farmacon Experience — Stand no maior evento do setor farmacêutico"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: '50% 40%',
-                display: 'block',
-              }}
-              loading="lazy"
-            />
+            <picture>
+              <source media="(min-width: 768px)" srcSet="/background/background-feira-desktop.webp" />
+              <img
+                src="/background/background-feira-mobile.webp"
+                alt="Farmacon Experience — Stand no maior evento do setor farmacêutico"
+                className="w-full h-full object-cover object-center block"
+                loading="lazy"
+              />
+            </picture>
           </m.div>
 
           {/* Overlay */}
@@ -102,15 +99,15 @@ const Demonstracao = () => {
             }}
           />
 
-          {/* Phrase — top left, line by line */}
+          {/* Phrase — top left, naturally wrapping */}
           <div
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               zIndex: 2,
-              padding: 'clamp(48px, 7vw, 100px) clamp(48px, 7vw, 110px)',
-              maxWidth: '700px',
+              padding: 'clamp(32px, 7vw, 100px) clamp(24px, 7vw, 110px)',
+              maxWidth: '800px',
             }}
           >
             <div
@@ -118,45 +115,17 @@ const Demonstracao = () => {
                 fontSize: 'clamp(1.5rem, 3.2vw, 2.6rem)',
                 fontWeight: 400,
                 letterSpacing: '-0.015em',
-                lineHeight: 1.15,
+                lineHeight: 1.25,
                 color: '#ffffff',
+                textWrap: 'balance',
+                display: 'flex',
+                flexWrap: 'wrap',
+                columnGap: '0.25em'
               }}
             >
-              {/* Line 1 */}
-              <span style={{ display: 'block', overflow: 'hidden', padding: '4px 0' }}>
-                <m.span
-                  style={{ display: 'block', opacity: line1Opacity, y: line1Y }}
-                >
-                  Por trás de cada farmácia
-                </m.span>
-              </span>
-
-              {/* Line 2 */}
-              <span style={{ display: 'block', overflow: 'hidden', padding: '4px 0' }}>
-                <m.span
-                  style={{ display: 'block', opacity: line2Opacity, y: line2Y }}
-                >
-                  que cresce, existe uma
-                </m.span>
-              </span>
-
-              {/* Line 3 */}
-              <span style={{ display: 'block', overflow: 'hidden', padding: '4px 0' }}>
-                <m.span
-                  style={{ display: 'block', opacity: line3Opacity, y: line3Y }}
-                >
-                  estratégia e gestão que
-                </m.span>
-              </span>
-
-              {/* Line 4 */}
-              <span style={{ display: 'block', overflow: 'hidden', padding: '4px 0' }}>
-                <m.span
-                  style={{ display: 'block', opacity: line4Opacity, y: line4Y }}
-                >
-                  começou aqui.
-                </m.span>
-              </span>
+              {"Por trás de cada farmácia que cresce, existe uma estratégia e gestão que começou aqui.".split(' ').map((word, i, arr) => (
+                <AnimatedWord key={i} word={word} progress={scrollYProgress} i={i} total={arr.length} />
+              ))}
             </div>
           </div>
         </m.div>

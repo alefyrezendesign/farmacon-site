@@ -25,7 +25,7 @@ const Home = () => {
     <>
       <SecaoHero />
 
-      <div className="relative z-20 -mt-[100vh] h-screen w-full shrink-0">
+      <div className="relative z-20 -mt-[100vh] h-auto min-h-screen lg:h-screen w-full shrink-0">
         <NumerosAutoridade />
       </div>
 
@@ -35,16 +35,16 @@ const Home = () => {
         </div>
 
         {/* Globe sequence positioned in normal flow but with negative margin to overlap sections */}
-        <div className="relative z-0 w-full flex justify-center -mt-20 md:-mt-40 lg:-mt-64 mb-10">
+        <div className="relative z-0 w-full flex justify-center -mt-28 sm:-mt-20 md:-mt-52 lg:-mt-64 mb-0 md:mb-10">
           <WorldScrollSequence progress={sequenceProgress} />
         </div>
 
-        <div className="relative z-10 w-full shrink-0 -mt-20 md:-mt-32 lg:-mt-60">
+        <div className="relative z-10 w-full shrink-0 -mt-8 sm:-mt-10 md:-mt-32 lg:-mt-60">
           <AnalisesRx />
         </div>
       </div>
 
-      <div className="w-full shrink-0 bg-white pt-10 md:pt-16 lg:pt-20">
+      <div className="w-full shrink-0 bg-white pt-6 md:pt-16 lg:pt-20">
         <FraseImpactante />
       </div>
 
@@ -56,7 +56,7 @@ const Home = () => {
         <ResumoSolucoes />
       </div>
 
-      <div id="rx-solucoes" className="w-full shrink-0 flex items-center justify-center bg-[#0a0a0a]">
+      <div id="rx-solucoes" className="relative z-30 w-full shrink-0 flex items-center justify-center bg-[#0a0a0a]">
         <EcossistemaRx />
       </div>
 

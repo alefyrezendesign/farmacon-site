@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { m, useInView  } from 'framer-motion';
 
-const FULL_TEXT = 'A Farmacon une a evolução do mercado e as\nsoluções mais completas para sua farmácia.';
+const FULL_TEXT = 'A Farmacon une a evolução do mercado e as soluções mais completas para sua farmácia.';
 
 const TypewriterText = () => {
   const ref = useRef<HTMLParagraphElement>(null);
@@ -27,20 +27,13 @@ const TypewriterText = () => {
     return () => clearInterval(interval);
   }, [isInView]);
 
-  const lines = displayed.split('\n');
-
   return (
     <p
       ref={ref}
       className="font-normal leading-[1.6] m-0 p-0 min-h-[2.6em] text-white"
-      style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.35rem)' }}
+      style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.35rem)', textWrap: 'balance' }}
     >
-      {lines.map((line, idx) => (
-        <span key={idx}>
-          {line}
-          {idx < lines.length - 1 && <br />}
-        </span>
-      ))}
+      <span>{displayed}</span>
       {showCursor && (
         <m.span
           animate={{ opacity: [1, 0] }}

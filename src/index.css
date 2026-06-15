@@ -8,7 +8,7 @@
   color: #0F172A;
 }
 
-body {
+html, body {
   @apply bg-white text-dark-900 antialiased font-sans font-light overflow-x-clip selection:bg-primary-500/30 selection:text-primary-900;
 }
 

@@ -35,6 +35,9 @@ const EcossistemaRx = () => {
         <img src="/background/bg-rx-gradient.jpg" alt="" className="w-full h-full object-cover object-top" loading="lazy" decoding="async" />
       </div>
 
+      {/* Fade to blend with white section above */}
+      <div className="absolute top-0 left-0 w-full h-32 lg:h-48 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none"></div>
+
       {/* SECTION 1: HERO */}
       <div className="min-h-[100svh] flex flex-col justify-center pt-[12rem] lg:pt-[14rem] pb-0 relative z-10">
         <div className="container mx-auto px-5 md:px-10 xl:px-16 flex flex-col gap-16 lg:gap-24">

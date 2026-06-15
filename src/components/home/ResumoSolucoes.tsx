@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { m, useScroll, useTransform, MotionValue  } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import { Shield, TrendingUp, Wallet, Package, Tag, Activity, ArrowRight, Lightbulb } from 'lucide-react';
 import { AnimatedTitle } from '../ui/AnimatedTitle';
 import { TypewriterBadge } from '../ui/TypewriterBadge';
@@ -50,31 +50,52 @@ const solutions = [
 ];
 
 const SolutionCard = ({ solution, index, isDesktop }: { solution: any, index: number, isDesktop: boolean }) => {
+  const mobileStyle = {
+    top: `calc(51vh + ${index * 12}px)`,
+    zIndex: index + 1,
+    minHeight: `calc(100vh + ${60 - index * 12}px)`,
+    transform: 'translateZ(0)',
+    willChange: 'transform',
+  };
+
   return (
     <m.div
-      initial={!isDesktop ? { opacity: 0, y: 30 } : undefined}
-      whileInView={!isDesktop ? { opacity: 1, y: 0 } : undefined}
-      viewport={!isDesktop ? { once: true, margin: "0px 0px -50px 0px" } : undefined}
+      style={!isDesktop ? mobileStyle : undefined}
+      initial={!isDesktop && index === 0 ? { opacity: 0, y: 30 } : undefined}
+      whileInView={!isDesktop && index === 0 ? { opacity: 1, y: 0 } : undefined}
+      viewport={!isDesktop && index === 0 ? { once: true, margin: "0px 0px -50px 0px" } : undefined}
       transition={{ duration: 0.5 }}
-      className="group flex flex-col justify-start px-2 md:px-5 relative py-8 md:py-12 lg:pt-8 lg:pb-12 min-h-[auto] cursor-pointer border-b border-surface-100 lg:border-none last:border-0"
+      className={`group flex flex-col justify-start px-6 sm:px-8 md:px-10 lg:px-0 lg:w-[300px] xl:w-[340px] 2xl:w-[380px] lg:flex-shrink-0 py-10 md:py-12 lg:pt-8 lg:pb-12 cursor-pointer lg:border-none last:border-0
+        ${!isDesktop ? 'sticky bg-white shadow-[0_-3px_12px_rgba(0,0,0,0.09)] rounded-t-[32px] border-t border-surface-200/80' : 'relative border-b border-surface-100 min-h-[auto]'}
+      `}
     >
-      {/* Giant Index Number */}
-      <div className="text-[5rem] md:text-[7rem] font-medium text-slate-800 transition-colors duration-500 group-hover:text-primary-600 mb-8 md:mb-10 tracking-tighter leading-none">
+      {/* Mobile Layout: Number + Title side by side */}
+      <div className="flex lg:hidden flex-row items-center gap-5 mb-5">
+        <div className="text-[4.2rem] font-medium text-slate-800 tracking-tighter leading-none">
+          {String(index + 1).padStart(2, '0')}
+        </div>
+        <h3 className="text-[1.15rem] font-bold text-dark-900 leading-[1.25]">
+          {solution.title}
+        </h3>
+      </div>
+
+      {/* Desktop Layout: Giant Number */}
+      <div className="hidden lg:block text-[7rem] font-medium text-slate-800 transition-colors duration-500 group-hover:text-primary-600 mb-6 tracking-tighter leading-none">
         {String(index + 1).padStart(2, '0')}
       </div>
 
-      {/* Minimalist Border Below Number */}
-      <div className="w-full h-[2px] bg-slate-200 mb-8 md:mb-12 relative overflow-hidden">
+      {/* Shared Border */}
+      <div className="w-full h-[2px] bg-slate-200 mb-5 lg:mb-16 relative overflow-hidden">
          <div className="absolute top-0 left-0 h-full w-0 bg-primary-500 transition-all duration-700 ease-out group-hover:w-full"></div>
       </div>
 
-      {/* Title */}
-      <h3 className="text-xl md:text-2xl font-bold text-dark-900 mb-5 md:mb-8 leading-[1.3] transition-colors duration-500 group-hover:text-primary-700">
+      {/* Desktop Layout: Title */}
+      <h3 className="hidden lg:block text-2xl font-bold text-dark-900 mb-8 leading-[1.3] transition-colors duration-500 group-hover:text-primary-700">
         {solution.title}
       </h3>
       
       {/* Description */}
-      <p className="text-[14.5px] md:text-[15.5px] text-slate-500 font-medium leading-[1.7]">
+      <p className="text-[15px] md:text-[15.5px] text-slate-500 font-medium leading-[1.7]">
         {solution.desc}
       </p>
     </m.div>
@@ -105,9 +126,29 @@ const ResumoSolucoes = () => {
     };
 
     updateLayout();
-    // Re-calcular caso a janela mude de tamanho
+    
+    // ResizeObserver garante que se a fonte carregar ou o layout se ajustar, ele recalcula
+    const resizeObserver = new ResizeObserver(() => {
+      updateLayout();
+    });
+
+    if (scrollContainerRef.current) {
+      resizeObserver.observe(scrollContainerRef.current);
+    }
+    if (scrollContainerRef.current?.parentElement) {
+      resizeObserver.observe(scrollContainerRef.current.parentElement);
+    }
+
     window.addEventListener('resize', updateLayout);
-    return () => window.removeEventListener('resize', updateLayout);
+    
+    // Timeout de fallback para garantir pintura completa
+    const timeoutId = setTimeout(updateLayout, 500);
+
+    return () => {
+      window.removeEventListener('resize', updateLayout);
+      resizeObserver.disconnect();
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -124,9 +165,9 @@ const ResumoSolucoes = () => {
     <section 
       ref={targetRef}
       id="solucoes" 
-      className="relative h-auto lg:h-[380vh] bg-white overflow-hidden lg:overflow-visible" 
+      className="relative h-auto lg:h-[380vh] bg-white overflow-visible lg:overflow-visible -mb-[62vh] lg:-mb-0" 
     >
-      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex flex-col lg:flex-row lg:items-center overflow-hidden pt-20 pb-16 lg:py-0">
+      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex flex-col lg:flex-row lg:items-center overflow-visible lg:overflow-hidden pt-20 pb-0 lg:pb-16 lg:py-0">
         
         {/* Background decoration */}
         <div
@@ -134,20 +175,25 @@ const ResumoSolucoes = () => {
         />
         <div className="absolute top-0 w-full h-[400px] bg-gradient-to-b from-white to-transparent pointer-events-none" />
 
-        {/* Container fixo que engloba as duas colunas */}
-        <div 
-          className="flex flex-col lg:flex-row lg:items-stretch gap-2 md:gap-8 lg:gap-10 xl:gap-16 px-5 sm:px-8 md:px-24 lg:px-32 w-full relative z-10"
+        {/* Container animado que engloba tudo */}
+        <m.div 
+          ref={scrollContainerRef}
+          style={isDesktop ? { x } : {}}
+          className="flex flex-col lg:flex-row lg:items-center gap-0 md:gap-8 lg:gap-16 xl:gap-24 px-0 lg:px-32 w-full lg:w-max relative z-10 h-auto"
         >
           
-          {/* Slide 1: Intro / MenuPrincipal (Coluna Esquerda Fixa) */}
-          <div className="w-full lg:w-[38vw] xl:w-[32vw] 2xl:w-[28vw] flex-shrink-0 flex flex-col justify-center items-start px-2 sm:px-4 pl-0 py-4 lg:py-8 mb-8 lg:mb-0 relative z-20">
+          {/* Slide 1: Intro / MenuPrincipal */}
+          <div 
+            className="w-full lg:w-[38vw] xl:w-[32vw] 2xl:w-[28vw] flex-shrink-0 flex flex-col justify-start lg:justify-center items-start px-6 sm:px-8 lg:px-0 py-2 lg:py-8 lg:pt-24 mb-6 lg:mb-0 lg:z-20 sticky top-[70px] lg:relative lg:top-auto bg-white z-0 pb-4"
+            style={!isDesktop ? { minHeight: 'calc(151vh - 34px)' } : undefined}
+          >
             
             <m.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="mb-6"
+              className="mb-4 lg:mb-6"
             >
               <TypewriterBadge 
                 text="Soluções"
@@ -156,7 +202,7 @@ const ResumoSolucoes = () => {
               />
             </m.div>
 
-            <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 text-dark-900">
+            <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-4 lg:mb-6 text-dark-900">
               <AnimatedTitle lines={["Resultados de", "ponta a ponta."]} delay={0.1} />
             </h2>
 
@@ -172,46 +218,32 @@ const ResumoSolucoes = () => {
                 delay: 0.3,
                 duration: 0.8
               }}
-              className="text-[1rem] md:text-[1.1rem] text-slate-600 font-medium leading-relaxed max-w-2xl mb-8"
+              className="text-[0.95rem] md:text-[1.1rem] text-slate-600 font-medium leading-relaxed max-w-[420px] md:max-w-xl mb-2 lg:mb-8"
             >
-              Nossas soluções resolvem problemas reais. Combinamos<br />
-              expertise contábil, tributária e financeira para conectar<br />
-              sua farmácia às estratégias mais aderentes ao seu<br />
-              momento de crescimento.
+              Nossas soluções resolvem problemas reais. Combinamos expertise contábil, tributária e financeira para conectar sua farmácia às estratégias mais adequadas ao seu momento de crescimento.
             </m.p>
 
-            <div className="mt-6 md:mt-12 flex items-center gap-4 text-primary-600 font-semibold tracking-wide">
-              <span className="animate-pulse">{isDesktop ? 'Continue rolando' : 'Nossas soluções'}</span>
-              {isDesktop && <ArrowRight className="w-5 h-5" />}
+            <div className="hidden lg:flex mt-8 md:mt-12 items-center gap-4 text-primary-600 font-semibold tracking-wide">
+              <span className="animate-pulse">Continue rolando</span>
+              <ArrowRight className="w-5 h-5" />
             </div>
           </div>
 
-          {/* Slides 2-7: Solution Cards (Coluna Direita Animada) */}
-          <div 
-            className="flex-1 overflow-hidden relative flex flex-col justify-center lg:pt-12"
-            style={isDesktop ? {
-              WebkitMaskImage: 'linear-gradient(to right, transparent 0px, black 40px, black calc(100% - 140px), transparent 100%)',
-              maskImage: 'linear-gradient(to right, transparent 0px, black 40px, black calc(100% - 140px), transparent 100%)',
-              transform: 'translateZ(0)',
-              isolation: 'isolate'
-            } : {}}
-          >
-            <m.div 
-              ref={scrollContainerRef}
-              style={isDesktop ? { x } : {}} 
-              className="grid grid-cols-1 lg:grid-cols-6 w-full lg:w-[calc(150%-40px)] lg:px-[40px] gap-2 lg:gap-0"
-            >
-              {solutions.map((solution, index) => (
-                <SolutionCard 
-                  key={solution.id}
-                  solution={solution}
-                  index={index}
-                  isDesktop={isDesktop}
-                />
-              ))}
-            </m.div>
+          {/* Slides 2-7: Solution Cards */}
+          <div className="relative flex flex-col lg:flex-row w-full lg:w-max gap-0 lg:gap-12 xl:gap-16 pt-0 lg:pt-12 -mt-[calc(100vh+60px)] lg:mt-0">
+            {solutions.map((solution, index) => (
+              <SolutionCard 
+                key={solution.id}
+                solution={solution}
+                index={index}
+                isDesktop={isDesktop}
+              />
+            ))}
+            {/* Spacer longo para garantir uma etapa completa de pausa visual (encaixe) do Card 06 no mobile */}
+            <div className="w-full h-[40vh] lg:hidden" />
           </div>
-        </div>
+
+        </m.div>
       </div>
     </section>
   );

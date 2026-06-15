@@ -271,7 +271,7 @@ const SobreTimeline = () => {
     <section 
       ref={targetRef}
       id="timeline" 
-      className="relative bg-white overflow-hidden"
+      className="relative bg-white overflow-clip"
       style={{ height: sectionHeight }}
     >
       <div className="relative lg:sticky top-0 h-auto lg:h-screen flex items-center overflow-hidden py-16 lg:py-0 px-4 md:px-10 lg:px-0">

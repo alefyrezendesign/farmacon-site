@@ -104,7 +104,7 @@ const AnalisesRx = () => {
       className="relative w-full lg:h-[250vh]" // 250vh gives plenty of scroll distance to smoothly view all 8 items
     >
       {/* Sticky wrapper for desktop, static for mobile */}
-      <div className="lg:sticky lg:top-0 lg:h-screen w-full flex items-center justify-center lg:overflow-hidden py-16 lg:py-0">
+      <div className="lg:sticky lg:top-0 lg:h-screen w-full flex items-center justify-center lg:overflow-hidden pt-16 pb-6 lg:py-0">
         <div className="container mx-auto px-5 md:px-10 xl:px-16 w-full">
           <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16 xl:gap-24">
 
@@ -122,10 +122,10 @@ const AnalisesRx = () => {
                   }, 600);
                 }
               }}
-              className="w-full lg:w-[42%] xl:w-[40%] shrink-0 flex flex-col justify-center relative z-20"
+              className="w-full lg:w-[42%] xl:w-[40%] shrink-0 flex flex-col justify-center relative z-20 items-center text-center lg:items-start lg:text-left"
             >
               {/* Badge */}
-              <div className="mb-6 w-fit">
+              <div className="mb-6 w-fit mx-auto lg:mx-0">
                 <TypewriterBadge 
                   text="RX Análises"
                   icon={<Eye className="w-4 h-4" strokeWidth={2.5} />}
@@ -138,7 +138,7 @@ const AnalisesRx = () => {
               </h2>
 
               {/* Description */}
-              <p className="text-[1rem] md:text-[1.1rem] text-slate-500 font-medium leading-relaxed mb-14 max-w-md">
+              <p className="text-[1rem] md:text-[1.1rem] text-slate-500 font-medium leading-relaxed mb-14 max-w-md mx-auto lg:mx-0">
                 Identifique impostos pagos a mais, taxas invisíveis e gargalos
                 financeiros que reduzem o lucro da sua farmácia todos os meses.
               </p>
@@ -260,13 +260,13 @@ const AnalisesRx = () => {
                             {item.num}
                           </span>
                           <div className="flex-1 min-w-0">
-                            <h3 className={`text-[1.25rem] font-bold tracking-tight transition-colors duration-300 ${isOpen ? 'text-primary-600' : 'text-slate-900'}`}>
+                            <h3 className={`text-[1.15rem] font-bold tracking-tight transition-colors duration-300 ${isOpen ? 'text-primary-600' : 'text-slate-900'}`}>
                               {item.title}
                             </h3>
                             <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                               {item.tags.map((tag, i) => (
                                 <span key={i} className="flex items-center gap-2">
-                                  <span className="text-[13px] text-slate-400 font-medium">{tag}</span>
+                                  <span className="text-[12px] text-slate-400 font-medium">{tag}</span>
                                   {i < item.tags.length - 1 && <span className="w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0" />}
                                 </span>
                               ))}
@@ -282,7 +282,7 @@ const AnalisesRx = () => {
                             <div className="w-9 h-9 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 border border-primary-100/50">
                               <Icon className="w-[18px] h-[18px]" strokeWidth={1.5} />
                             </div>
-                            <p className="text-[13.5px] text-slate-500 leading-relaxed pr-2">
+                            <p className="text-[12.5px] text-slate-500 leading-relaxed pr-2">
                               {item.desc}
                             </p>
                           </div>

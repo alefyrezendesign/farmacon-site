@@ -45,7 +45,7 @@ export function useTypewriter(
         const jitter = (Math.random() - 0.5) * baseDelay * 0.8;
         // Occasional micro-hesitation (~10% chance)
         const hesitation = Math.random() < 0.10 ? baseDelay * 1.5 : 0;
-        return Math.max(30, baseDelay + jitter + hesitation);
+        return Math.max(Math.min(15, baseDelay), baseDelay + jitter + hesitation);
     };
 
     const start = () => {

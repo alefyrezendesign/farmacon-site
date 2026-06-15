@@ -12,7 +12,7 @@ export const AnimatedTitle = ({ lines, className = '', delay = 0 }: AnimatedTitl
   return (
     <span className={`flex flex-col ${className}`}>
       {lines.map((line, index) => (
-        <span key={index} className="block overflow-hidden py-4 -my-4">
+        <span key={index} className="block overflow-hidden py-4 -my-4 px-4 -mx-4">
             <m.span
             initial={{ opacity: 0, y: "110%" }}
             whileInView={{ opacity: 1, y: 0 }}

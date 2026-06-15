@@ -58,12 +58,6 @@ const WorldScrollSequence = ({ progress }: WorldScrollSequenceProps) => {
   useMotionValueEvent(progress, 'change', (latest) => {
     if (!canvasRef.current || images.length === 0) return;
 
-    // Desativar scroll progressivo no mobile para economizar processamento
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      return;
-    }
-
-    
     let frameIndex = Math.floor(latest * (FRAME_COUNT - 1));
     if (frameIndex < 0) frameIndex = 0;
     if (frameIndex >= FRAME_COUNT) frameIndex = FRAME_COUNT - 1;
@@ -77,7 +71,7 @@ const WorldScrollSequence = ({ progress }: WorldScrollSequenceProps) => {
         ref={canvasRef} 
         width={1920} 
         height={1080}
-        className="w-full max-w-[1920px] h-auto object-cover"
+        className="w-[130%] max-w-[130%] h-auto object-cover md:w-full md:max-w-[1920px]"
       />
     </div>
   );
