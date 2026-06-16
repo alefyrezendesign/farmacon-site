@@ -100,7 +100,6 @@ export const FundoCodigoHero = ({ progress, inverted = false, isOptimized = fals
     return () => cancelAnimationFrame(animationFrameId);
   }, [barsData, normalizedProgress, isInView]);
 
-  const darkBg = '#0B1528';
 
   return (
     <div ref={containerRef} className={`absolute inset-0 w-full h-full overflow-hidden transition-colors duration-700 ${isOptimized ? 'bg-[#0B1528]' : (inverted ? 'bg-[#1D4ED8]' : 'bg-white')} z-0 pointer-events-none`}>

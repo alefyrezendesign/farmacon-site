@@ -10,14 +10,13 @@ export default defineConfig({
     // Split vendor chunks so browsers can cache them separately
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Heavy animation library — cache-busted independently
-          'vendor-framer': ['framer-motion'],
-
-          // Icon library — large but rarely changes
-          'vendor-lucide': ['lucide-react'],
-          // React core — almost never changes
-          'vendor-react': ['react', 'react-dom'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) return 'vendor-framer';
+            if (id.includes('lucide-react')) return 'vendor-lucide';
+            if (id.includes('react') || id.includes('react-dom')) return 'vendor-react';
+            return 'vendor';
+          }
         },
       },
     },
