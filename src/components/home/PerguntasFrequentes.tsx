@@ -96,7 +96,7 @@ const PerguntasFrequentes = () => {
 
           {/* Right — CTA */}
           <div className="flex items-stretch h-full">
-            <div className="w-full rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col items-center lg:items-start justify-center text-center lg:text-left relative overflow-hidden shadow-2xl shadow-primary-600/20">
+            <div className="w-full rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col items-start justify-center text-left relative overflow-hidden shadow-2xl shadow-primary-600/20">
               {/* Video Background */}
               <div className="absolute inset-0 z-0 bg-primary-900">
                 <video
@@ -121,16 +121,16 @@ const PerguntasFrequentes = () => {
                   O próximo passo <br className="hidden lg:block"/>para a sua farmácia.
                 </h3>
 
-                <p className="text-base md:text-lg text-primary-100 font-light max-w-md mb-10 leading-relaxed">
+                <p className="text-[15px] md:text-lg text-primary-100 font-light max-w-md mb-10 leading-relaxed">
                   Agende uma conversa com nossos especialistas e descubra como a Farmacon pode estruturar o seu crescimento.
                 </p>
 
                 <button
                   onClick={() => openModal()}
-                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-base hover:bg-primary-500 hover:scale-105 transition-all duration-300"
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 md:gap-3 px-4 sm:px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-sm md:text-base hover:bg-primary-500 hover:scale-105 transition-all duration-300 whitespace-nowrap"
                 >
                   Quero crescer com a Farmacon
-                  <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform shrink-0" />
                 </button>
               </div>
             </div>

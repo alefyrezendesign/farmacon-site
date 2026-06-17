@@ -29,7 +29,7 @@ const SobreHistoria = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="pt-24 pb-16 md:pt-32 md:pb-24 bg-white relative overflow-hidden flex items-center"
+      className="pt-12 pb-16 md:pt-32 md:pb-24 bg-white relative overflow-hidden flex items-center"
     >
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10 w-full">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center w-full">
@@ -42,7 +42,7 @@ const SobreHistoria = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-dark-900 leading-[1.1] m-0">
+              <h2 className="text-[2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-dark-900 leading-[1.1] m-0">
                 Muito prazer, nós somos a Farmacon
               </h2>
             </m.div>
@@ -52,7 +52,7 @@ const SobreHistoria = () => {
           <div ref={textRef} className="w-full lg:w-[55%] flex flex-col gap-8">
             
             {/* Texto Principal (Revela letra por letra com Scroll Normal) */}
-            <p className="text-xl md:text-2xl lg:text-[22px] font-medium text-dark-900 leading-relaxed text-justify m-0">
+            <p className="text-[15px] md:text-2xl lg:text-[22px] font-medium text-dark-900 leading-relaxed text-left md:text-justify m-0">
               {(() => {
                 let currentIndex = 0;
                 const totalChars = text.length;

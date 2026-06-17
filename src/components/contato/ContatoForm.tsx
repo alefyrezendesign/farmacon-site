@@ -94,7 +94,7 @@ export default function ContatoForm() {
     }, [form]);
 
     const inputCls = (err?: string) =>
-        `w-full px-5 py-4 rounded-2xl border bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors shadow-sm ${
+        `w-full px-4 py-3 md:px-5 md:py-4 text-[14px] md:text-base rounded-xl md:rounded-2xl border bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors shadow-sm ${
             err ? 'border-red-400 focus:border-red-500' : 'border-surface-200 focus:border-blue-500'
         }`;
 
@@ -148,7 +148,7 @@ export default function ContatoForm() {
         <>
             <RDStationGhostForm ref={ghostFormRef} formId="farmacon-falar-com-especialista-61970b97e7b14c7e127d" />
             
-            <form onSubmit={onSubmit} noValidate className="space-y-6 w-full">
+            <form onSubmit={onSubmit} noValidate className="space-y-4 md:space-y-6 w-full">
                 {serverErr && (
                     <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-600">
                         <AlertCircle size={18} className="shrink-0" />
@@ -156,45 +156,45 @@ export default function ContatoForm() {
                     </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="name" className="flex justify-between text-sm font-medium text-dark-900 ml-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div className="flex flex-col gap-1.5 md:gap-2">
+                        <label htmlFor="name" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
                             Nome completo {errors.name && <span className="text-red-500 font-bold">{errors.name}</span>}
                         </label>
                         <input id="name" name="name" type="text" placeholder="João da Silva" value={form.name} onChange={onChange} className={inputCls(errors.name)} />
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="phone" className="flex justify-between text-sm font-medium text-dark-900 ml-1">
+                    <div className="flex flex-col gap-1.5 md:gap-2">
+                        <label htmlFor="phone" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
                             Telefone / WhatsApp {errors.phone && <span className="text-red-500 font-bold">{errors.phone}</span>}
                         </label>
                         <input id="phone" name="phone" type="tel" placeholder="(XX) XXXXX-XXXX" value={form.phone} onChange={onChange} className={inputCls(errors.phone)} />
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="email" className="flex justify-between text-sm font-medium text-dark-900 ml-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div className="flex flex-col gap-1.5 md:gap-2">
+                        <label htmlFor="email" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
                             E-mail {errors.email && <span className="text-red-500 font-bold">{errors.email}</span>}
                         </label>
                         <input id="email" name="email" type="email" placeholder="seu@email.com" value={form.email} onChange={onChange} className={inputCls(errors.email)} />
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="company" className="flex justify-between text-sm font-medium text-dark-900 ml-1">
+                    <div className="flex flex-col gap-1.5 md:gap-2">
+                        <label htmlFor="company" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
                             Empresa {errors.company && <span className="text-red-500 font-bold">{errors.company}</span>}
                         </label>
                         <input id="company" name="company" type="text" placeholder="Nome da farmácia" value={form.company} onChange={onChange} className={inputCls(errors.company)} />
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="city" className="flex justify-between text-sm font-medium text-dark-900 ml-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div className="flex flex-col gap-1.5 md:gap-2">
+                        <label htmlFor="city" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
                             Cidade {errors.city && <span className="text-red-500 font-bold">{errors.city}</span>}
                         </label>
                         <input id="city" name="city" type="text" placeholder="Sua cidade" value={form.city} onChange={onChange} className={inputCls(errors.city)} />
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="state" className="flex justify-between text-sm font-medium text-dark-900 ml-1">
+                    <div className="flex flex-col gap-1.5 md:gap-2">
+                        <label htmlFor="state" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
                             Estado {errors.state && <span className="text-red-500 font-bold">{errors.state}</span>}
                         </label>
                         <div className="relative">
@@ -207,8 +207,8 @@ export default function ContatoForm() {
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="moment" className="flex justify-between text-sm font-medium text-dark-900 ml-1">
+                <div className="flex flex-col gap-1.5 md:gap-2">
+                    <label htmlFor="moment" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
                         Qual o seu momento? {errors.moment && <span className="text-red-500 font-bold">{errors.moment}</span>}
                     </label>
                     <div className="relative">

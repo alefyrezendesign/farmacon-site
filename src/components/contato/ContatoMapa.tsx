@@ -17,7 +17,7 @@ const ContatoMapa = () => {
         {/* Title */}
         <div className="text-center mb-12 flex flex-col items-center">
           <div className="mb-4">
-             <TypewriterBadge text="Nossas Unidades" icon={<Building2 size={16} />} />
+             <TypewriterBadge text="Nossas Unidades" icon={<Building2 size={16} />} className="bg-white border-surface-200" />
           </div>
           <m.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -94,14 +94,14 @@ const ContatoMapa = () => {
             {outrasUnidades.map((loc, i) => (
               <div 
                 key={i}
-                className="flex items-center p-6 md:p-8 bg-white border border-surface-200 rounded-[24px] shadow-sm"
+                className="flex items-center p-4 md:p-8 bg-white border border-surface-200 rounded-[20px] md:rounded-[24px] shadow-sm"
               >
-                <div className="relative shrink-0 mr-6 md:mr-8">
-                  <div className="w-16 h-16 rounded-full border border-surface-100 shadow-sm bg-primary-50 flex items-center justify-center text-primary-600">
-                    <MapPin size={26} className="stroke-[2]" />
+                <div className="relative shrink-0 mr-4 md:mr-8">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-surface-100 shadow-sm bg-primary-50 flex items-center justify-center text-primary-600">
+                    <MapPin className="w-5 h-5 md:w-6 md:h-6 stroke-[2]" />
                   </div>
                   {/* Small visual element: Flag */}
-                  <div className="absolute -bottom-2 -right-2 w-9 h-9 bg-white rounded-full shadow-sm border-[3px] border-white overflow-hidden flex items-center justify-center">
+                  <div className="absolute -bottom-1 -right-1 md:-bottom-2 md:-right-2 w-7 h-7 md:w-9 md:h-9 bg-white rounded-full shadow-sm border-[2px] md:border-[3px] border-white overflow-hidden flex items-center justify-center">
                     <img 
                       src={`https://flagcdn.com/w40/${loc.flagCode}.png`} 
                       alt={`Bandeira ${loc.pais}`} 
@@ -111,10 +111,10 @@ const ContatoMapa = () => {
                 </div>
                 
                 <div className="flex flex-col flex-1 text-left">
-                  <h4 className="font-extrabold text-dark-900 text-xl md:text-2xl mb-1">
+                  <h4 className="font-extrabold text-dark-900 text-[17px] md:text-2xl mb-0.5 md:mb-1">
                     {loc.cidade}
                   </h4>
-                  <span className="font-medium text-surface-500 text-sm md:text-base">
+                  <span className="font-medium text-surface-500 text-[13px] md:text-base">
                     {loc.estado ? `${loc.estado} • ${loc.pais}` : loc.pais}
                   </span>
                 </div>

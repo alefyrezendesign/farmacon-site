@@ -56,7 +56,7 @@ const SectionHeader = ({
 
       {/* Title */}
       {titleLines ? (
-        <h2 className={`text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 ${inverted ? 'text-white' : 'text-dark-900'}`}>
+        <h2 className={`text-[2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 ${inverted ? 'text-white' : 'text-dark-900'}`}>
           <AnimatedTitle lines={titleLines} delay={badgeText ? 0.7 : 0.1} />
         </h2>
       ) : title ? (
@@ -65,7 +65,7 @@ const SectionHeader = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.6, delay: badgeText ? 0.7 : 0.1 }}
-          className={`text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 ${inverted ? 'text-white' : 'text-dark-900'}`}
+          className={`text-[2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 ${inverted ? 'text-white' : 'text-dark-900'}`}
         >
           {title}
         </m.h2>

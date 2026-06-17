@@ -47,7 +47,7 @@ const ContatoHero = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] text-left"
+                className="text-[2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] text-left"
               >
                 Fale com nossos <br className="hidden md:block"/>
                 especialistas.
@@ -83,14 +83,27 @@ const ContatoHero = () => {
             transition={{ duration: 0.7 }}
             className="text-[2.2rem] md:text-5xl lg:text-[4rem] font-medium tracking-tight text-dark-900 leading-[1.2] inline-flex flex-wrap justify-center items-center gap-x-3 gap-y-2"
           >
+            {/* Mobile Photos (Above text) */}
+            <span className="md:hidden flex justify-center w-full mb-2">
+              <span className="inline-flex items-center bg-surface-50 rounded-full p-1 border border-surface-200 shadow-sm">
+                <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-11 h-11 rounded-full border-[3px] border-white object-cover" />
+                <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-11 h-11 rounded-full border-[3px] border-white object-cover -ml-4" />
+                <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-11 h-11 rounded-full border-[3px] border-white object-cover -ml-4" />
+                <div className="w-11 h-11 rounded-full border-[3px] border-white bg-dark-900 text-white flex items-center justify-center -ml-4 text-base font-medium z-10 shadow-sm">
+                  +
+                </div>
+              </span>
+            </span>
+
             <span>Descubra o poder</span>
             <span>da inteligência em</span>
             
-            <span className="inline-flex items-center mx-2 bg-surface-50 rounded-full p-1.5 border border-surface-200 shadow-sm align-middle">
-              <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover" />
-              <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
-              <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
-              <div className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white bg-dark-900 text-white flex items-center justify-center -ml-4 text-base md:text-xl font-medium z-10 shadow-sm">
+            {/* Desktop Photos (Between text) */}
+            <span className="hidden md:inline-flex items-center mx-2 bg-surface-50 rounded-full p-1.5 border border-surface-200 shadow-sm align-middle">
+              <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover" />
+              <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
+              <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
+              <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white bg-dark-900 text-white flex items-center justify-center -ml-4 text-xl font-medium z-10 shadow-sm">
                 +
               </div>
             </span>
@@ -108,62 +121,62 @@ const ContatoHero = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 bg-white rounded-[32px] p-8 md:p-10 border-2 border-surface-200 shadow-sm flex flex-col h-full"
+            className="lg:col-span-2 bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-10 border-2 border-surface-200 shadow-sm flex flex-col h-full"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-dark-900 mb-8">Informações de Contato</h3>
+            <h3 className="text-xl md:text-3xl font-bold text-dark-900 mb-6 md:mb-8">Informações de Contato</h3>
 
-            <div className="space-y-8 flex-1">
+            <div className="space-y-6 md:space-y-8 flex-1">
               {/* Phone */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600 w-5 h-5 md:w-[22px] md:h-[22px]"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 </div>
                 <div>
-                  <h4 className="text-dark-900 font-semibold mb-1">Telefones</h4>
-                  <p className="text-surface-500 text-sm md:text-base">
+                  <h4 className="text-dark-900 font-semibold mb-0.5 md:mb-1 text-[15px] md:text-base">Telefones</h4>
+                  <p className="text-surface-500 text-[13px] md:text-base">
                     (21) 2635-4903 <br/> 
                     (21) 97180-7881
                   </p>
                 </div>
               </div>
               
-              <div className="w-full h-[2px] bg-surface-200"></div>
+              <div className="w-full h-[1px] md:h-[2px] bg-surface-200"></div>
               
               {/* Email */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600 w-5 h-5 md:w-[22px] md:h-[22px]"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
                 </div>
                 <div>
-                  <h4 className="text-dark-900 font-semibold mb-1">E-mail</h4>
-                  <p className="text-surface-500 text-sm md:text-base">relacionamento@farmacon.com.br</p>
+                  <h4 className="text-dark-900 font-semibold mb-0.5 md:mb-1 text-[15px] md:text-base">E-mail</h4>
+                  <p className="text-surface-500 text-[13px] md:text-base break-all sm:break-normal">relacionamento@farmacon.com.br</p>
                 </div>
               </div>
 
-              <div className="w-full h-[2px] bg-surface-200"></div>
+              <div className="w-full h-[1px] md:h-[2px] bg-surface-200"></div>
 
               {/* Opening Hours */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600 w-5 h-5 md:w-[22px] md:h-[22px]"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                 </div>
                 <div>
-                  <h4 className="text-dark-900 font-semibold mb-1">Horário de Atendimento</h4>
-                  <p className="text-surface-500 text-sm md:text-base">Segunda a Quinta: 08h00 – 18h00<br/>Sexta: 08h00 – 17h00</p>
+                  <h4 className="text-dark-900 font-semibold mb-0.5 md:mb-1 text-[15px] md:text-base">Horário de Atendimento</h4>
+                  <p className="text-surface-500 text-[13px] md:text-base">Segunda a Quinta: 08h00 – 18h00<br/>Sexta: 08h00 – 17h00</p>
                 </div>
               </div>
 
               <div className="w-full h-px bg-surface-100"></div>
 
               {/* Location */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600 w-5 h-5 md:w-[22px] md:h-[22px]"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <div className="flex flex-col gap-5">
                   <div>
-                    <h4 className="text-dark-900 font-semibold mb-1">Matriz - Itaboraí</h4>
-                    <p className="text-surface-500 text-sm leading-relaxed">
+                    <h4 className="text-dark-900 font-semibold mb-0.5 md:mb-1 text-[15px] md:text-base">Matriz - Itaboraí</h4>
+                    <p className="text-surface-500 text-[13px] md:text-sm leading-relaxed">
                       Prédio Hellix - Av. Vinte e Dois de Maio, 6331<br/>
                       Bloco 1, 7º andar<br/>
                       Jardim Imperial, Itaboraí - RJ<br/>
@@ -181,10 +194,10 @@ const ContatoHero = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-3 bg-surface-50 rounded-[32px] p-8 md:p-10 lg:p-12 border-2 border-surface-200 shadow-sm flex flex-col justify-center h-full"
+            className="lg:col-span-3 bg-surface-50 rounded-[24px] md:rounded-[32px] p-6 md:p-10 lg:p-12 border-2 border-surface-200 shadow-sm flex flex-col justify-center h-full"
           >
-            <div className="mb-8">
-              <h3 className="text-3xl md:text-4xl font-bold text-dark-900 tracking-tight">Envie uma mensagem</h3>
+            <div className="mb-6 md:mb-8">
+              <h3 className="text-2xl md:text-4xl font-bold text-dark-900 tracking-tight">Envie uma mensagem</h3>
             </div>
 
             <ContatoForm />

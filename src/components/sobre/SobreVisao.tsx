@@ -81,24 +81,32 @@ const SolutionItem = ({ servico, index }: { servico: any, index: number }) => {
       className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 py-8 border-b border-slate-100 last:border-b-0 group"
     >
       {/* Número */}
-      <div className="pt-1 flex-shrink-0 w-8">
+      <div className="hidden md:block pt-1 flex-shrink-0 w-8">
         <span className={`font-mono text-[13px] md:text-[15px] font-[600] tracking-wider transition-colors duration-300 ${isOn ? 'text-blue-600' : 'text-slate-300'}`}>
           {numStr}
         </span>
       </div>
 
       {/* Conteúdo Central */}
-      <div className="flex-1 flex flex-col gap-2.5">
-        <h3 className={`text-[1.3rem] md:text-[1.5rem] font-semibold tracking-tight transition-colors duration-300 ${isOn ? 'text-slate-900' : 'text-slate-400'}`}>
-          {servico.title}
-        </h3>
-        <p className={`text-[14px] md:text-[15px] leading-relaxed font-light md:pr-10 transition-colors duration-300 ${isOn ? 'text-slate-500' : 'text-slate-300'}`}>
+      <div className="flex-1 flex flex-col gap-2">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className={`text-[1rem] md:text-[1.5rem] font-semibold tracking-tight text-balance leading-snug transition-colors duration-300 ${isOn ? 'text-slate-900' : 'text-slate-400'}`}>
+            {servico.title}
+          </h3>
+          {/* Toggle Icon (Mobile Only) */}
+          <div className="md:hidden pt-0.5 flex-shrink-0">
+            <div className={`w-[32px] h-[18px] rounded-full relative flex items-center p-[2px] transition-colors duration-300 ease-out ${isOn ? 'bg-blue-600' : 'bg-slate-200'}`}>
+              <div className={`w-[14px] h-[14px] bg-white rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out ${isOn ? 'translate-x-[14px]' : 'translate-x-0'}`} />
+            </div>
+          </div>
+        </div>
+        <p className={`text-[12px] md:text-[15px] leading-relaxed font-light md:pr-10 transition-colors duration-300 ${isOn ? 'text-slate-500' : 'text-slate-300'}`}>
           {servico.desc}
         </p>
       </div>
 
       {/* Toggle Icon à direita */}
-      <div className="pt-2 sm:pt-1 flex-shrink-0">
+      <div className="hidden md:block pt-2 md:pt-1 flex-shrink-0">
         <div className={`w-[36px] h-[20px] rounded-full relative flex items-center p-[2px] transition-colors duration-300 ease-out ${isOn ? 'bg-blue-600' : 'bg-slate-200'}`}>
           <div className={`w-[16px] h-[16px] bg-white rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out ${isOn ? 'translate-x-[16px]' : 'translate-x-0'}`} />
         </div>
@@ -112,7 +120,7 @@ const SobreVisao = () => {
     <section className="pt-12 pb-4 md:pt-16 md:pb-8 relative -mt-[5vh] lg:-mt-[10vh] z-20">
       {/* Background removido a pedido */}
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-24 relative">
           
           {/* Lado Esquerdo - Card Fixo (Sticky) */}
           <div className="lg:col-span-5 relative">
@@ -158,7 +166,7 @@ const SobreVisao = () => {
           </div>
 
           {/* Lado Direito - Lista Scrollável */}
-          <div className="lg:col-span-7 flex flex-col pt-4 lg:pt-[10vh] xl:pt-[12vh]">
+          <div className="lg:col-span-7 flex flex-col lg:pt-[10vh] xl:pt-[12vh]">
             {servicos.map((servico, idx) => (
               <SolutionItem key={idx} servico={servico} index={idx} />
             ))}

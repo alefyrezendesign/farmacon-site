@@ -30,7 +30,7 @@ const momentos = [
 const SobreMomentos = () => {
   const { openModal } = useModalEspecialista();
   return (
-    <section className="pt-28 md:pt-40 pb-24 md:pb-32 bg-white relative overflow-hidden">
+    <section className="pt-12 md:pt-40 pb-24 md:pb-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10">
         
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
@@ -56,18 +56,18 @@ const SobreMomentos = () => {
               className={`flex flex-col lg:flex-row items-start lg:items-center justify-between py-10 lg:py-14 gap-6 lg:gap-12 border-slate-300 ${idx === 0 ? 'border-t' : 'border-t'} ${idx === momentos.length - 1 ? 'border-b' : ''}`}
             >
               {/* Coluna 1: Icone e Título (Equivalente ao "People") */}
-              <div className="w-full lg:w-[35%] flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+              <div className="w-full lg:w-[35%] flex flex-row items-center gap-3 md:gap-6">
                 <div className="text-slate-800 shrink-0">
                   {item.icon}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight">
+                <h3 className="text-[1.15rem] md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight">
                   {item.title}
                 </h3>
               </div>
 
               {/* Coluna 2: Descrição (Equivalente ao texto central) */}
               <div className="w-full lg:w-[40%]">
-                <p className="text-[16px] md:text-[18px] text-slate-500 font-medium leading-relaxed">
+                <p className="text-[14px] md:text-[18px] text-slate-500 font-medium leading-relaxed">
                   {item.description}
                 </p>
               </div>

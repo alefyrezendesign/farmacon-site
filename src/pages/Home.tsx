@@ -56,11 +56,11 @@ const Home = () => {
         <ResumoSolucoes />
       </div>
 
-      <div id="rx-solucoes" className="relative z-30 w-full shrink-0 flex items-center justify-center bg-[#0a0a0a]">
+      <div id="rx-solucoes" className="relative z-30 w-full shrink-0 flex items-center justify-center bg-white">
         <EcossistemaRx />
       </div>
 
-      <div className="w-full shrink-0 bg-white">
+      <div className="w-full shrink-0 bg-white -mt-[1px] relative z-30">
         <Depoimentos />
       </div>
 

@@ -111,7 +111,7 @@ const CarrosselParceiros = () => {
   }, [onScroll]);
 
   return (
-    <div className="w-full overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28 bg-white relative flex flex-col gap-6 md:gap-10">
+    <div className="w-full overflow-hidden pt-4 pb-10 md:pt-14 md:pb-28 bg-white relative flex flex-col gap-6 md:gap-10">
       {/* Fade masks no container relative */}
       <div className="absolute inset-0 pointer-events-none z-10 bg-fade-edges-white" />
 

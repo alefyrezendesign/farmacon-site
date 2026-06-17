@@ -133,12 +133,12 @@ const AnalisesRx = () => {
               </div>
 
               {/* Title */}
-              <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 text-dark-900">
+              <h2 className="text-[2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 text-dark-900">
                 <AnimatedTitle lines={["Análise Profunda"]} delay={0.1} />
               </h2>
 
               {/* Description */}
-              <p className="text-[1rem] md:text-[1.1rem] text-slate-500 font-medium leading-relaxed mb-14 max-w-md mx-auto lg:mx-0">
+              <p className="text-[15px] md:text-[1.1rem] text-slate-500 font-medium leading-relaxed mb-14 max-w-md mx-auto lg:mx-0">
                 Identifique impostos pagos a mais, taxas invisíveis e gargalos
                 financeiros que reduzem o lucro da sua farmácia todos os meses.
               </p>

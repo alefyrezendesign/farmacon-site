@@ -40,7 +40,7 @@ const SobreHero = () => {
   };
 
   return (
-    <section ref={heroRef} className="relative w-full h-[100svh] lg:h-screen flex flex-col justify-center bg-transparent overflow-hidden z-0">
+    <section ref={heroRef} className="relative w-full h-[100svh] lg:h-screen flex flex-col justify-start pt-32 pb-10 lg:pt-0 lg:pb-0 lg:justify-center bg-transparent overflow-hidden z-0">
       
       {/* Procedural Code Background */}
       <FundoCodigoHero progress={heroProgress} inverted={true} />
@@ -51,7 +51,7 @@ const SobreHero = () => {
         animate="visible"
         className="relative z-10 w-full px-5 md:px-10 lg:px-[132px] 2xl:px-[179px] max-w-[1920px] mx-auto"
       >
-        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-[100px] xl:gap-[130px] 2xl:gap-[200px] w-full">
+        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-[100px] xl:gap-[130px] 2xl:gap-[200px] w-full">
           
           {/* Left Content */}
           <div className="w-full lg:w-auto flex flex-col items-start">
@@ -72,11 +72,23 @@ const SobreHero = () => {
             {/* Title */}
             <m.h1 
               variants={itemVariants}
-              className="text-4xl md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] mb-8 lg:w-auto text-left lg:whitespace-nowrap"
+              className="text-[2.2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] mb-8 lg:w-auto text-left lg:whitespace-nowrap"
             >
-              Há mais de uma década <br className="hidden md:block"/>
-              transformando histórias, <br className="hidden md:block"/>
-              pessoas e negócios.
+              {/* Desktop Title */}
+              <span className="hidden md:inline-block">
+                Há mais de uma década <br />
+                transformando histórias, <br />
+                pessoas e negócios.
+              </span>
+              
+              {/* Mobile Title */}
+              <span className="md:hidden">
+                Há mais de <br />
+                uma década <br />
+                transformando <br />
+                histórias, pessoas <br />
+                e negócios.
+              </span>
             </m.h1>
 
             <m.div variants={itemVariants} className="w-full sm:w-auto">
@@ -95,7 +107,7 @@ const SobreHero = () => {
           </div>
 
           {/* Right Content - Specialists & Cards */}
-          <div className="w-full lg:w-auto flex flex-col lg:items-start mt-12 lg:mt-0">
+          <div className="w-full lg:w-auto flex flex-col lg:items-start">
             
             <div className="flex flex-col items-start w-full lg:w-[410px]">
               
@@ -120,7 +132,8 @@ const SobreHero = () => {
               >
                 {especialistas.map((esp, i) => {
                   const isHovered = hoveredIndex === i;
-                  const baseOffset = i * 92; // px from left
+                  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+                  const baseOffset = i * (isMobile ? 70 : 92); // px from left
                   
                   // Física de estado contínuo ultra-suave (Apple/Linear style)
                   let currentX = baseOffset;
@@ -155,7 +168,18 @@ const SobreHero = () => {
                   return (
                     <m.div
                       key={esp.id}
-                      onMouseEnter={() => setHoveredIndex(i)}
+                      onMouseEnter={() => {
+                        if (typeof window !== 'undefined' && window.innerWidth >= 1024) setHoveredIndex(i);
+                      }}
+                      onTouchStart={() => {
+                        if (typeof window !== 'undefined' && window.innerWidth < 1024) setHoveredIndex(i);
+                      }}
+                      onTouchEnd={() => {
+                        if (typeof window !== 'undefined' && window.innerWidth < 1024) setHoveredIndex(null);
+                      }}
+                      onTouchCancel={() => {
+                        if (typeof window !== 'undefined' && window.innerWidth < 1024) setHoveredIndex(null);
+                      }}
                       className={`absolute rounded-3xl w-[105px] lg:w-[133px] h-[150px] lg:h-[200px] bg-slate-200 cursor-pointer overflow-hidden left-0 origin-bottom`}
                       initial={{ x: 0 }}
                       animate={{

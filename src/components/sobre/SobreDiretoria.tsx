@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { m, AnimatePresence  } from 'framer-motion';
+import { Users } from 'lucide-react';
+import SectionHeader from '../ui/SectionHeader';
 
 const directors = [
   {
@@ -61,9 +63,26 @@ const SobreDiretoria = () => {
   return (
     <section className="pt-16 md:pt-24 pb-6 md:pb-8 bg-white">
       <div className="container mx-auto px-5 md:px-10 xl:px-16">
-        <div className="h-[550px] lg:h-[600px] w-full relative bg-slate-900 rounded-3xl overflow-hidden text-white flex flex-col justify-between">
+        
+        {/* Title for mobile, outside the card */}
+        <div className="md:hidden mb-8">
+          <SectionHeader
+            badgeIcon={<Users size={14} />}
+            badgeText="Diretoria"
+            titleLines={[
+              "As mentes que",
+              "constroem o",
+              "futuro do varejo",
+              "farmacêutico."
+            ]}
+            align="left"
+            className="!mb-0"
+          />
+        </div>
+
+        <div className="h-[650px] lg:h-[600px] w-full relative bg-slate-900 rounded-3xl overflow-hidden text-white flex flex-col justify-between">
       {/* Background Image Transitions */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-x-0 top-0 h-[65%] md:h-full md:inset-0 z-0">
         <AnimatePresence>
           <m.img 
             key={activeDir.id}
@@ -72,24 +91,25 @@ const SobreDiretoria = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover object-top md:object-center"
           />
         </AnimatePresence>
-        {/* Gradiente da Esquerda (morre antes do centro) */}
-        <div className="absolute inset-y-0 left-0 w-full md:w-[45%] bg-gradient-to-r from-slate-900/95 via-slate-900/60 to-transparent pointer-events-none"></div>
-        {/* Gradiente da Direita (morre antes do centro) */}
-        <div className="absolute inset-y-0 right-0 w-full md:w-[35%] bg-gradient-to-l from-slate-900/90 via-slate-900/40 to-transparent pointer-events-none"></div>
-        {/* Gradiente Inferior (apenas na base) */}
-        <div className="absolute inset-x-0 bottom-0 h-[40%] md:h-[25%] bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-transparent pointer-events-none"></div>
+        {/* Gradientes Desktop */}
+        <div className="hidden md:block absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-slate-900/95 via-slate-900/60 to-transparent pointer-events-none"></div>
+        <div className="hidden md:block absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-slate-900/90 via-slate-900/40 to-transparent pointer-events-none"></div>
+        {/* Gradiente Inferior Mobile (Mescla a foto com o fundo sólido) */}
+        <div className="md:hidden absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent pointer-events-none"></div>
+        {/* Gradiente Inferior Desktop */}
+        <div className="hidden md:block absolute inset-x-0 bottom-0 h-[25%] bg-gradient-to-t from-slate-900/95 via-slate-900/70 to-transparent pointer-events-none"></div>
       </div>
 
       {/* Content Layer */}
-      <div className="relative z-10 w-full h-full px-6 md:px-12 py-10 md:py-12 flex flex-col justify-between pointer-events-none">
+      <div className="relative z-10 w-full h-full px-6 md:px-12 py-8 md:py-12 flex flex-col justify-end md:justify-between pointer-events-none">
         
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 pointer-events-auto">
-          {/* Main Statement */}
-          <div className="w-full md:w-[45%] lg:w-[35%]">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8 pointer-events-auto mb-6 md:mb-0">
+          {/* Main Statement (Desktop Only) */}
+          <div className="hidden md:block w-full md:w-[45%] lg:w-[35%]">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight md:leading-snug">
               As mentes que constroem o futuro do varejo farmacêutico.
             </h2>
@@ -104,7 +124,7 @@ const SobreDiretoria = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4 }}
-                className="text-base md:text-lg font-light text-white/90 leading-relaxed"
+                className="text-[14px] md:text-lg font-light text-white/90 leading-relaxed italic md:not-italic"
               >
                 "{activeDir.quote}"
               </m.p>
@@ -147,7 +167,7 @@ const SobreDiretoria = () => {
           </div>
 
           {/* Footer Info Line */}
-          <div className="grid grid-cols-2 md:grid-cols-3 items-end border-t border-white/20 pt-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 items-end border-t border-white/20 pt-5 md:pt-6">
             
             <div className="flex flex-col">
               <AnimatePresence mode="wait">
@@ -158,7 +178,7 @@ const SobreDiretoria = () => {
                   exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-xl md:text-2xl font-medium tracking-tight">{activeDir.name}</span>
+                  <span className="text-[1.3rem] md:text-2xl font-medium tracking-tight whitespace-nowrap">{activeDir.name}</span>
                 </m.div>
               </AnimatePresence>
             </div>

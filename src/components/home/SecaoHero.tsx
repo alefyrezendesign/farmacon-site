@@ -293,7 +293,7 @@ const SecaoHero = () => {
               </m.div>
 
               {/* Title */}
-              <h1 className={`text-4xl sm:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 transition-colors duration-700 ${isMobileOptimized ? 'text-white' : 'text-dark-900'}`}>
+              <h1 className={`text-[2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight leading-[1.1] mb-6 transition-colors duration-700 ${isMobileOptimized ? 'text-white' : 'text-dark-900'}`}>
                 <AnimatedTitle lines={[
                   <span key="precisa">
                     Sua farmácia <span className="whitespace-nowrap">precisa{renderToggle("lg:hidden ml-2")}</span>

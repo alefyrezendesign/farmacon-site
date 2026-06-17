@@ -102,19 +102,19 @@ const Depoimentos = () => {
       <div className="container mx-auto px-5 md:px-10 xl:px-16">
         
         {/* Header and Text Testimonials */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-12 gap-10">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-12 gap-0 lg:gap-10">
           <div className="lg:w-3/5">
             <SectionHeader
               badgeIcon={<Handshake className="w-3.5 h-3.5" />}
               badgeText="Vem ser Farmacon"
-              titleLines={["3 novas farmácias", "por dia confiam em", "nossa expertise"]}
+              titleLines={["3 novas farmácias", "por dia confiam", "em nossa expertise"]}
               align="left"
-              className="mb-0 md:mb-0 [&_h2]:max-w-none"
+              className="mb-0 md:mb-0 [&_h2]:max-w-none [&_h2]:mb-0 lg:[&_h2]:mb-6"
             />
           </div>
           
           <div className="lg:w-2/5 flex items-center justify-end">
-            <div className="w-full flex flex-col mt-8 lg:mt-0 lg:pl-10">
+            <div className="w-full flex flex-col -mt-2 md:mt-0 lg:pl-10">
               <Quote size={32} className="text-primary-200 fill-primary-100 mb-5" />
               
               <div className="relative min-h-[140px] md:min-h-[120px] lg:min-h-[160px] flex flex-col">
@@ -173,7 +173,7 @@ const Depoimentos = () => {
         </div>
 
         {/* Título Acima dos Vídeos */}
-        <div className="w-full mb-10 flex items-center justify-center lg:justify-start gap-3">
+        <div className="w-full mb-10 flex items-center justify-start gap-3">
           <div className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-100 text-primary-600 shadow-sm shrink-0">
             <Play className="w-4 h-4 md:w-5 md:h-5 ml-[2px]" fill="currentColor" />
           </div>
@@ -242,50 +242,65 @@ const Depoimentos = () => {
           })}
         </div>
 
-        {/* Snap Scroll (Mobile/Tablet) */}
-        <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 lg:hidden pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {videos.map((video) => {
+        {/* Video Accordion (Mobile/Tablet) */}
+        <div className="flex flex-col gap-2 lg:hidden w-full mx-auto pb-8">
+          {videos.map((video, index) => {
+            const isActive = activeIndex === index;
             const src = getThumbnailForName(video.name, video.id);
             const isYouTubeThumb = src.includes('youtube.com');
+            
             return (
-              <button
+              <m.button
                 key={video.id}
-                onClick={() => openVideo(video.id)}
-                className="w-[85vw] sm:w-[60vw] md:w-[45vw] shrink-0 snap-start text-left group"
+                onViewportEnter={() => setActiveIndex(index)}
+                viewport={{ margin: "-40% 0px -40% 0px" }}
+                onClick={() => {
+                  if (isActive) {
+                    openVideo(video.id);
+                  } else {
+                    setActiveIndex(index);
+                  }
+                }}
+                className={`relative cursor-pointer overflow-hidden rounded-2xl transition-[height] duration-500 ease-out w-full shrink-0 ${isActive ? 'h-[360px]' : 'h-[64px]'}`}
                 aria-label={`Reproduzir depoimento de ${video.name}`}
               >
-                <div className="relative h-[300px] md:h-[400px] overflow-hidden rounded-3xl mb-4 shadow-sm group-hover:shadow-md transition-shadow">
-                  <img 
-                    alt={video.name} 
-                    src={src}
-                    className={`w-full h-full object-cover bg-slate-100 origin-center ${isYouTubeThumb ? 'scale-[1.35]' : ''}`}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
-                  
-                  {video.type && (
-                     <div className="absolute top-4 right-4 z-30">
-                       <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest bg-blue-600/90 text-white shadow-md border border-blue-400/50 backdrop-blur-sm">
-                         {video.type}
-                       </span>
-                     </div>
-                  )}
-
-                  <figure className="absolute top-1/2 left-1/2 z-20 flex w-12 h-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 shadow-[0_0_20px_rgba(37,99,235,0.5)] group-hover:scale-110 transition-transform duration-300">
-                    <Play className="w-5 h-5 text-white ml-1" fill="currentColor" />
-                  </figure>
-                </div>
-                <div className="flex flex-col text-slate-900 px-1">
-                  <h1 className="text-[22px] font-extrabold text-slate-900 mb-1 leading-tight">{video.name}</h1>
+                {/* Thumbnail */}
+                <img 
+                  alt={video.name} 
+                  src={src}
+                  className={`absolute inset-0 w-full h-full object-cover bg-slate-100 origin-center ${isYouTubeThumb ? 'scale-[1.35]' : ''}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-60'}`}></div>
+                
+                {/* Tag Cliente/Parceiro */}
+                {video.type && (
+                   <div className={`absolute top-4 right-4 z-30 transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 -translate-y-4 delay-0 pointer-events-none'}`}>
+                     <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-blue-600/90 text-white shadow-lg border border-blue-400/50 backdrop-blur-md">
+                       {video.type}
+                     </span>
+                   </div>
+                )}
+                
+                {/* Play Button */}
+                <figure className={`absolute top-1/2 left-1/2 z-20 flex w-12 h-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 transition-all duration-300 ${isActive ? 'scale-100 opacity-100 shadow-[0_0_30px_rgba(37,99,235,0.8)]' : 'scale-75 opacity-0'}`}>
+                  <Play className="w-5 h-5 text-white ml-1" fill="currentColor" />
+                </figure>
+                
+                {/* Text Info */}
+                <div className={`absolute inset-x-0 bottom-0 p-5 text-left transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 delay-0 pointer-events-none'}`}>
+                  <h1 className="text-xl font-extrabold text-white mb-1 drop-shadow-md leading-tight">{video.name}</h1>
                   {video.pharmacy && (
-                    <h3 className="text-base font-bold text-slate-700 mb-2 leading-tight">
+                    <h3 className="text-sm font-bold text-white mb-1.5 drop-shadow-md leading-tight">
                       {video.pharmacy}
                     </h3>
                   )}
-                  <p className="text-[13px] text-slate-600 font-medium leading-relaxed">{video.desc}</p>
+                  <p className="text-xs font-medium text-white drop-shadow-md leading-relaxed">{video.desc}</p>
                 </div>
-              </button>
+              </m.button>
             );
           })}
         </div>

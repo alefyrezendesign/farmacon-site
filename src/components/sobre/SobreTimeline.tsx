@@ -54,32 +54,38 @@ const TimelineItem = ({
 }) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const [threshold, setThreshold] = useState(1);
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(index === 0);
 
   useEffect(() => {
-    if (!isDesktop) return;
-    if (trackGeometry.totalWidth <= 1) return;
-
     const calculateThreshold = () => {
       if (!itemRef.current) return;
       
-      // O primeiro item (2013) já deve estar ativo desde o início
       if (index === 0) {
         setThreshold(0);
         return;
       }
       
-      const itemX = itemRef.current.offsetLeft;
-      // O centro da bolinha do item
-      const dotCenterAbsolute = itemX + 8;
-      
-      // Distância a ser percorrida A PARTIR do 2013
-      // Subtrai 15px para o item ativar instantes antes do toque visual exato da linha animada
-      const distanceToCover = dotCenterAbsolute - 15 - trackGeometry.initialWidth;
-      const expandableWidth = trackGeometry.totalWidth - trackGeometry.initialWidth;
-      
-      if (expandableWidth > 0) {
-        setThreshold(distanceToCover / expandableWidth);
+      if (isDesktop) {
+        if (trackGeometry.totalWidth <= 1) return;
+        const itemX = itemRef.current.offsetLeft;
+        const dotCenterAbsolute = itemX + 8;
+        const distanceToCover = dotCenterAbsolute - 15 - trackGeometry.initialWidth;
+        const expandableWidth = trackGeometry.totalWidth - trackGeometry.initialWidth;
+        
+        if (expandableWidth > 0) {
+          setThreshold(distanceToCover / expandableWidth);
+        }
+      } else {
+        const container = itemRef.current.offsetParent as HTMLElement;
+        if (!container) return;
+        // On mobile, the scroll container is the vertical div.
+        // Measure Y position
+        const itemY = itemRef.current.offsetTop;
+        const dotCenterAbsolute = itemY + 14; // bolinha is near top
+        const expandableHeight = container.scrollHeight;
+        if (expandableHeight > 0) {
+          setThreshold((dotCenterAbsolute - 15) / expandableHeight);
+        }
       }
     };
 
@@ -99,8 +105,7 @@ const TimelineItem = ({
   }, [trackGeometry, index, isDesktop]);
 
   useMotionValueEvent(progress, "change", (latest: number) => {
-    if (!isDesktop) return;
-    if (threshold === 1) return;
+    if (threshold === 1 && index !== 0) return;
     const currentlyActive = latest >= threshold;
     if (currentlyActive !== isActive) {
       setIsActive(currentlyActive);
@@ -112,21 +117,33 @@ const TimelineItem = ({
   if (!isDesktop) {
     return (
       <m.div 
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
-        className="flex gap-4 relative pl-8 pb-10 last:pb-0"
+        ref={itemRef}
+        className="timeline-item-wrapper flex gap-4 relative pl-8 pb-10 last:pb-0"
       >
-        {/* Linha vertical no mobile */}
-        <div className="absolute top-0 bottom-0 left-[7px] w-[2px] bg-slate-200" />
+        {/* A linha vertical cinza será desenhada globalmente no container pai, 
+            removendo a necessidade de cada item desenhar a sua. 
+            (Iremos adicionar isso no SobreTimeline.tsx) */}
+            
         {/* Bolinha */}
-        <div className="absolute top-[6px] left-0 w-4 h-4 rounded-full border-[2.5px] border-blue-600 bg-white z-10" />
+        <div className="absolute top-[6px] left-[-8px] w-4 h-4 flex items-center justify-center z-10">
+          <div 
+            className={`w-3.5 h-3.5 rounded-full border-[2.5px] bg-white transition-colors duration-200 ${isActive ? 'border-blue-600 bg-blue-600' : 'border-slate-300'}`} 
+          />
+        </div>
         
-        <div className="flex flex-col">
-          <span className="text-3xl font-bold text-blue-600 tracking-tighter mb-1 leading-none">{event.year}</span>
-          <h3 className="text-xl font-semibold text-slate-900 tracking-tight mb-2">{event.title}</h3>
-          <p className="text-sm text-slate-500 leading-relaxed font-light">{event.description}</p>
+        <div className="flex flex-col w-full">
+          <span className={`text-2xl font-bold tracking-tighter mb-1 leading-none transition-colors duration-200 ${isActive ? 'text-blue-600' : 'text-slate-300'}`}>
+            {event.year}
+          </span>
+          <h3 className="text-lg font-semibold text-slate-900 tracking-tight mb-2">{event.title}</h3>
+          <m.div
+            initial={false}
+            animate={{ height: isActive ? "auto" : 0, opacity: isActive ? 1 : 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <p className="text-sm text-slate-500 leading-relaxed font-light pb-2">{event.description}</p>
+          </m.div>
         </div>
       </m.div>
     );
@@ -203,6 +220,7 @@ const SobreTimeline = () => {
   const [sectionHeight, setSectionHeight] = useState("auto"); 
   const [trackGeometry, setTrackGeometry] = useState({ initialWidth: 0, totalWidth: 1 });
   const [isDesktop, setIsDesktop] = useState(true);
+  const [mobileLineHeight, setMobileLineHeight] = useState(0);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -230,8 +248,13 @@ const SobreTimeline = () => {
             totalWidth
           });
         }
-      } else if (!desktop) {
+      } else if (!desktop && scrollContainerRef.current) {
         setSectionHeight("auto");
+        const items = scrollContainerRef.current.querySelectorAll('.timeline-item-wrapper');
+        if (items.length > 0) {
+          const lastItem = items[items.length - 1] as HTMLElement;
+          setMobileLineHeight(lastItem.offsetTop);
+        }
       }
     };
 
@@ -267,6 +290,16 @@ const SobreTimeline = () => {
   const x = useTransform(scrollYProgress, [0, 1], [0, scrollRange]);
   const scaleX = useTransform(smoothProgress, [0, 1], [0, 1]);
 
+  const { scrollYProgress: mobileProgressRaw } = useScroll({
+    target: targetRef,
+    offset: ["start 60%", "end 60%"]
+  });
+  const smoothMobileProgress = useSpring(mobileProgressRaw, {
+    stiffness: 80,
+    damping: 20,
+    restDelta: 0.001
+  });
+
   return (
     <section 
       ref={targetRef}
@@ -274,7 +307,7 @@ const SobreTimeline = () => {
       className="relative bg-white overflow-clip"
       style={{ height: sectionHeight }}
     >
-      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex items-center overflow-hidden py-16 lg:py-0 px-4 md:px-10 lg:px-0">
+      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex items-center overflow-hidden pt-40 pb-16 lg:pt-0 lg:pb-0 px-4 md:px-10 lg:px-0">
         
         {/* Background Image */}
         <div 
@@ -286,21 +319,21 @@ const SobreTimeline = () => {
         <m.div 
           ref={scrollContainerRef}
           style={isDesktop ? { x } : {}} 
-          className="flex flex-col lg:flex-row items-start lg:items-stretch w-full lg:w-max relative z-10 h-auto lg:h-[60vh] lg:mt-[15vh] max-w-lg mx-auto lg:max-w-none"
+          className="flex flex-col lg:flex-row items-start lg:items-stretch w-full lg:w-max relative z-10 h-auto lg:h-[60vh] lg:mt-[15vh] max-w-lg mx-auto lg:max-w-none ml-6 md:ml-auto"
         >
-          {/* Linhas animadas só existem no desktop */}
-          {isDesktop && (
+          {/* Linhas animadas: Desktop (horizontal) vs Mobile (vertical) */}
+          {isDesktop ? (
             <>
-              {/* Base Track (Light Gray) - Ocupa de ponta a ponta absoluta do container flexível */}
+              {/* Base Track (Light Gray) - Horizontal */}
               <div className="absolute top-1/2 left-0 w-full h-[1px] bg-slate-200 -translate-y-1/2 z-0" />
               
-              {/* Active Track Base (Azul) - Pinta da extrema esquerda até o primeiro marco (2013) garantindo que a linha nunca fique vazia no início */}
+              {/* Active Track Base (Azul) - Horizontal */}
               <div 
                 className="absolute top-1/2 left-0 h-[2px] bg-blue-600 -translate-y-1/2 z-[5]" 
                 style={{ width: trackGeometry.initialWidth ? `${trackGeometry.initialWidth}px` : 0 }}
               />
 
-              {/* Active Track Extension (Azul) - Anima de onde o 2013 parou até a extrema direita (w-full do restante) */}
+              {/* Active Track Extension (Azul) - Horizontal */}
               <m.div 
                 className="absolute top-1/2 h-[2px] bg-blue-600 -translate-y-1/2 z-[5] origin-left"
                 style={{ 
@@ -310,8 +343,26 @@ const SobreTimeline = () => {
                 }}
               />
 
-              {/* Spacer Inicial Alinhado: Match exato com as margens do Hero para alinhar na mesma linha vertical vermelha */}
+              {/* Spacer Inicial Alinhado */}
               <div className="w-[20px] md:w-[40px] lg:w-[132px] 2xl:w-[179px] min-[1920px]:w-[calc(50vw-960px+179px)] flex-shrink-0 relative h-full" />
+            </>
+          ) : (
+            <>
+              {/* Base Track (Light Gray) - Vertical */}
+              <div 
+                className="absolute left-[-1px] w-[2px] bg-slate-200 z-0" 
+                style={{ top: '14px', height: `${mobileLineHeight}px` }}
+              />
+              
+              {/* Active Track (Azul) - Vertical */}
+              <m.div 
+                className="absolute left-[-1px] w-[2px] bg-blue-600 z-[5] origin-top"
+                style={{ 
+                  top: '14px', 
+                  height: `${mobileLineHeight}px`,
+                  scaleY: smoothMobileProgress 
+                }}
+              />
             </>
           )}
 
@@ -321,7 +372,7 @@ const SobreTimeline = () => {
               key={index}
               event={event}
               index={index}
-              progress={smoothProgress}
+              progress={isDesktop ? smoothProgress : smoothMobileProgress}
               trackGeometry={trackGeometry}
               isDesktop={isDesktop}
             />

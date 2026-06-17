@@ -129,14 +129,14 @@ const SobreCultura = () => {
         
         {/* Fullscreen Background Image */}
         <div 
-          className="absolute right-0 top-0 w-full md:w-2/3 h-full bg-contain bg-right bg-no-repeat z-0 lg:translate-y-12"
+          className="absolute right-0 top-0 w-full md:w-2/3 h-full bg-[length:180%_auto] md:bg-contain bg-right-bottom md:bg-right bg-no-repeat z-0 lg:translate-y-12"
           style={{ backgroundImage: "url('/background/sobre-bg/bg-azul-lateral-light.webp')" }}
         />
         
-        <div className="container mx-auto px-5 md:px-10 xl:px-16 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20 relative z-10 lg:translate-y-12">
+        <div className="container mx-auto px-5 md:px-10 xl:px-16 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-20 relative z-10 lg:translate-y-12">
           
           {/* Left Column: Title and text */}
-          <div className="w-full md:w-1/2 flex flex-col items-start lg:-mt-8">
+          <div className="w-full md:w-1/2 flex flex-col items-start lg:-mt-8 pt-12 md:pt-0">
             <SectionHeader
               badgeIcon={<Landmark className="w-3.5 h-3.5" />}
               badgeText="Nossos pilares"
@@ -144,16 +144,14 @@ const SobreCultura = () => {
                 "Muito além de",
                 "contabilidade."
               ]}
-              subtitle={<>Mais do que tecnologia avançada, inteligência artificial <br />
-e análise de dados, a Farmacon é feita essencialmente<br />
-de pessoas e propósitos verdadeiros.</>}
+              subtitle={<>Mais do que tecnologia avançada, inteligência artificial e análise de dados, a Farmacon é feita essencialmente de pessoas e propósitos verdadeiros.</>}
               align="left"
               className="!mb-0"
             />
           </div>
 
           {/* Right Column: Free Floating Cards */}
-          <div className="w-full md:w-1/2 relative flex flex-col justify-center min-h-[500px]">
+          <div className="w-full md:w-1/2 relative flex flex-col justify-center min-h-[380px] md:min-h-[500px]">
               
               {/* CARDS */}
               <m.div 
@@ -177,12 +175,12 @@ de pessoas e propósitos verdadeiros.</>}
                       >
                         {/* Frente */}
                         <div className="absolute inset-0 bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-xl border border-white/80 shadow-[1px_3px_7px_rgba(0,0,0,0.12)] rounded-3xl flex items-center justify-between px-6 md:px-8" style={{ backfaceVisibility: "hidden" }}>
-                          <h3 className="text-xl md:text-2xl font-bold text-black">{card.title}</h3>
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-black">{card.title}</h3>
                           <Icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
                         {/* Verso */}
                         <div className="absolute inset-0 bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-xl border border-white/80 shadow-[1px_3px_7px_rgba(0,0,0,0.12)] rounded-3xl flex items-center justify-between gap-4 px-6 md:px-8" style={{ backfaceVisibility: "hidden", transform: "rotateX(180deg)" }}>
-                          <p className="text-sm md:text-base text-slate-600 font-medium leading-snug flex-1">
+                          <p className="text-[12px] sm:text-sm md:text-base text-slate-600 font-medium leading-snug flex-1">
                             {card.text}
                           </p>
                           <Icon className="w-6 h-6 md:w-8 md:h-8 text-white shrink-0" />

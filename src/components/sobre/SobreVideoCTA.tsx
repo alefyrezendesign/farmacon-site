@@ -5,7 +5,7 @@ import { useModalEspecialista } from '../../hooks/useModalEspecialista';
 const SobreVideoCTA = () => {
   const { openModal } = useModalEspecialista();
   return (
-    <section className="pt-12 md:pt-16 pb-2 md:pb-4">
+    <section className="pt-2 md:pt-16 pb-2 md:pb-4">
       <div className="container mx-auto px-5 md:px-10 xl:px-16">
         <div className="relative w-full py-16 md:py-20 rounded-3xl flex items-center justify-center overflow-hidden">
       
@@ -24,10 +24,10 @@ const SobreVideoCTA = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full px-8 md:px-16 flex flex-col md:flex-row items-center justify-between text-left gap-8 md:gap-12">
+      <div className="relative z-10 w-full px-8 md:px-16 flex flex-col md:flex-row items-start md:items-center justify-between text-left gap-8 md:gap-12">
         
         {/* Left Column - Text */}
-        <div className="flex-1 max-w-[500px] lg:max-w-[600px]">
+        <div className="flex-1 w-full max-w-[500px] lg:max-w-[600px]">
           <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ const SobreVideoCTA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-base md:text-lg text-white/80 font-light max-w-[400px]"
+            className="text-[15px] md:text-lg text-white/80 font-light max-w-[400px]"
           >
             Faça parte do ecossistema que está <br className="hidden md:block" />
             redefinindo o padrão de resultados <br className="hidden md:block" />
@@ -57,14 +57,15 @@ const SobreVideoCTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="w-full md:w-auto"
         >
           <button 
             onClick={() => openModal()} 
-            className="group flex items-center gap-4 bg-white text-slate-900 px-8 py-4 rounded-full font-medium text-lg hover:bg-slate-50 transition-all duration-300 hover:scale-105 cursor-pointer"
+            className="w-full justify-center group flex items-center gap-3 bg-white text-slate-900 px-8 py-3.5 rounded-full font-semibold text-[15px] hover:bg-slate-50 transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Junte-se a nós
-            <div className="bg-slate-100 rounded-full p-2 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
-              <ArrowRight size={18} />
+            <div className="bg-slate-100 rounded-full p-1.5 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+              <ArrowRight size={16} />
             </div>
           </button>
         </m.div>

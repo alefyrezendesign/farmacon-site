@@ -139,6 +139,15 @@ const FraseImpactante = () => {
       if (!startTime) startTime = timestamp;
       const elapsed = timestamp - startTime;
 
+      if (window.innerWidth < 1024) {
+        // Auto animate on mobile - slow Lissajous curve covering the whole grid
+        const cx = w / 2;
+        const cy = h / 2;
+        const speed = elapsed * 0.0004;
+        mx = cx + Math.sin(speed) * (w * 0.45);
+        my = cy + Math.sin(speed * 1.3) * Math.cos(speed * 0.8) * (h * 0.45);
+      }
+
       smx += (mx - smx) * 0.15;
       smy += (my - smy) * 0.15;
       ctx.clearRect(0, 0, w, h);
