@@ -16,7 +16,7 @@ export const AnimatedTitle = ({ lines, className = '', delay = 0 }: AnimatedTitl
             <m.span
             initial={{ opacity: 0, y: "110%" }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{
               type: 'spring',
               damping: 25,
@@ -27,6 +27,7 @@ export const AnimatedTitle = ({ lines, className = '', delay = 0 }: AnimatedTitl
             }}
             className="block"
             aria-hidden="true"
+            style={{ willChange: "transform, opacity" }}
           >
             {line}
           </m.span>

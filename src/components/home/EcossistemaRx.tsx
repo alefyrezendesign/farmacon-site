@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { useModalRxSolucoes } from '../../hooks/useModalRxSolucoes';
+import CarrosselParceirosRx from './CarrosselParceirosRx';
 
 const accordionData = [
   {
@@ -221,6 +222,11 @@ const EcossistemaRx = () => {
 
           </div>
         </div>
+      </div>
+
+      {/* SECTION 2.5: CAROUSEL PARCEIROS */}
+      <div className="w-full relative z-10 pb-16 lg:pb-24">
+        <CarrosselParceirosRx />
       </div>
 
       {/* SECTION 3: EXPANDABLE ACCORDION */}

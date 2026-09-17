@@ -132,10 +132,9 @@ const ContatoHero = () => {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600 w-5 h-5 md:w-[22px] md:h-[22px]"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 </div>
                 <div>
-                  <h4 className="text-dark-900 font-semibold mb-0.5 md:mb-1 text-[15px] md:text-base">Telefones</h4>
+                  <h4 className="text-dark-900 font-semibold mb-0.5 md:mb-1 text-[15px] md:text-base">Telefone (WhatsApp)</h4>
                   <p className="text-surface-500 text-[13px] md:text-base">
-                    (21) 2635-4903 <br/> 
-                    (21) 97180-7881
+                    (11) 3163-5000
                   </p>
                 </div>
               </div>

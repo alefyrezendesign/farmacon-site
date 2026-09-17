@@ -4,6 +4,8 @@ import { FundoCodigoHero } from '../home/FundoCodigoHero';
 import { useModalEspecialista } from '../../hooks/useModalEspecialista';
 import { TypewriterBadge } from '../ui/TypewriterBadge';
 
+import { AnimatedTitle } from '../ui/AnimatedTitle';
+
 const especialistas = [
   { id: 1, bg: 'bg-[#FFB5C6]', img: '/background/sobre-bg/1.png' },
   { id: 2, bg: 'bg-[#B4B6FF]', img: '/background/sobre-bg/2.png' },
@@ -70,26 +72,28 @@ const SobreHero = () => {
             </m.div>
 
             {/* Title */}
-            <m.h1 
-              variants={itemVariants}
-              className="text-[2.2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] mb-8 lg:w-auto text-left lg:whitespace-nowrap"
-            >
+            <h1 className="text-[2.2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] mb-8 lg:w-auto text-left lg:whitespace-nowrap">
               {/* Desktop Title */}
-              <span className="hidden md:inline-block">
-                Há mais de uma década <br />
-                transformando histórias, <br />
-                pessoas e negócios.
+              <span className="hidden md:block">
+                <AnimatedTitle lines={[
+                  <span key="d1">Há mais de uma década</span>,
+                  <span key="d2">transformando histórias,</span>,
+                  <span key="d3">pessoas e negócios.</span>
+                ]} delay={0.2} />
               </span>
               
               {/* Mobile Title */}
-              <span className="md:hidden">
-                Há mais de <br />
-                uma década <br />
-                transformando <br />
-                histórias, pessoas <br />
-                e negócios.
+              <span className="md:block hidden"></span>
+              <span className="md:hidden block">
+                <AnimatedTitle lines={[
+                  <span key="m1">Há mais de</span>,
+                  <span key="m2">uma década</span>,
+                  <span key="m3">transformando</span>,
+                  <span key="m4">histórias, pessoas</span>,
+                  <span key="m5">e negócios.</span>
+                ]} delay={0.2} />
               </span>
-            </m.h1>
+            </h1>
 
             <m.div variants={itemVariants} className="w-full sm:w-auto">
               <button 

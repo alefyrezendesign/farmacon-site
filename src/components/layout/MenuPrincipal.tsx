@@ -100,8 +100,8 @@ const MenuPrincipal = () => {
         { name: 'Início', path: '/' },
         { name: 'Sobre nós', path: '/sobre' },
         { name: 'Rx Soluções', path: '/#rx-solucoes' },
-        { name: 'Trabalhe conosco', path: 'https://app.vaggou.com.br/farmacon', external: true },
         { name: 'Contato', path: '/contato' },
+        { name: 'Trabalhe conosco', path: 'https://app.vaggou.com.br/farmacon', external: true },
     ];
 
     return (

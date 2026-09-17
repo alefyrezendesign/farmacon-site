@@ -268,7 +268,7 @@ export default function ModalSolucoes() {
                                         <p className="text-slate-600 text-[13px] mb-3">
                                             Se preferir, chame nosso time agora no WhatsApp:
                                         </p>
-                                        <a href="https://wa.me/5521971807881?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20j%C3%A1%20me%20cadastrei%20e%20tenho%20interesse%20em%20saber%20mais%20sobre%20o%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full gap-2 px-4 py-3 bg-[#25D366] text-white rounded-xl font-bold text-[14px] hover:bg-[#20bd5a] transition-colors cursor-pointer">
+                                        <a href="https://wa.me/551131635000?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20j%C3%A1%20me%20cadastrei%20e%20tenho%20interesse%20em%20saber%20mais%20sobre%20o%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full gap-2 px-4 py-3 bg-[#25D366] text-white rounded-xl font-bold text-[14px] hover:bg-[#20bd5a] transition-colors cursor-pointer">
                                             Conversar no WhatsApp
                                         </a>
                                     </div>

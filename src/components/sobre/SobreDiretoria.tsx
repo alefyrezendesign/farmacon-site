@@ -1,43 +1,52 @@
 import { useState, useEffect } from 'react';
 import { m, AnimatePresence  } from 'framer-motion';
 import { Users } from 'lucide-react';
-import SectionHeader from '../ui/SectionHeader';
+
 
 const directors = [
   {
     id: 1,
-    name: "Marcus Cordeiro",
+    name: "Marcos Cordeiro",
     role: "CEO Farmacon",
-    quote: "A inovação contábil não é sobre números, é sobre prever o futuro do varejo farmacêutico e agir agora.",
-    image: "/diretoria/Marcus Cordeiro - CEO Farmacon.webp",
-    thumb: "/diretoria/Marcus Cordeiro - CEO Farmacon.webp",
+    quote: "A inovação contábil não\né sobre números, é sobre\nprever o futuro do varejo\nfarmacêutico e agir agora.",
+    image: "/diretoria/bg-frases (0).webp",
+    thumb: "/diretoria/bg-frases (0).webp",
     social: "LinkedIn"
   },
   {
     id: 2,
-    name: "Sérgio Vianna",
-    role: "CFO Farmacon",
-    quote: "Nossa inteligência financeira é desenhada para blindar sua margem de lucro em um mercado extremamente competitivo.",
-    image: "/diretoria/Sérgio Vianna - CFO Farmacon.webp",
-    thumb: "/diretoria/Sérgio Vianna - CFO Farmacon.webp",
+    name: "Marcos Cordeiro",
+    role: "CEO Farmacon",
+    quote: "Nossa inteligência financeira\né desenhada para blindar\nsua margem de lucro em um\nmercado altamente competitivo.",
+    image: "/diretoria/bg-frases (1).webp",
+    thumb: "/diretoria/bg-frases (1).webp",
     social: "LinkedIn"
   },
   {
     id: 3,
-    name: "Pedro Brasil",
-    role: "COO Farmacon",
-    quote: "Processos bem definidos são a ponte entre o planejamento estratégico e o dinheiro efetivo no caixa da sua farmácia.",
-    image: "/diretoria/Pedro Brasil - COO Farmacon.webp",
-    thumb: "/diretoria/Pedro Brasil - COO Farmacon.webp",
+    name: "Marcos Cordeiro",
+    role: "CEO Farmacon",
+    quote: "Processos bem definidos são\na ponte entre o planejamento\nestratégico e o dinheiro efetivo\nno caixa da sua farmácia.",
+    image: "/diretoria/bg-frases (2).webp",
+    thumb: "/diretoria/bg-frases (2).webp",
     social: "LinkedIn"
   },
   {
     id: 4,
-    name: "Michel Medeiros",
-    role: "Conselho Farmacon",
-    quote: "Segurança e governança são as bases fundamentais para o crescimento estruturado e sustentável do seu negócio.",
-    image: "/diretoria/michel-medeiros-conselho.webp",
-    thumb: "/diretoria/michel-medeiros-conselho.webp",
+    name: "Marcos Cordeiro",
+    role: "CEO Farmacon",
+    quote: "Segurança e governança\nsão as bases fundamentais\npara o crescimento estruturado\ne sustentável do seu negócio.",
+    image: "/diretoria/bg-frases (3).webp",
+    thumb: "/diretoria/bg-frases (3).webp",
+    social: "LinkedIn"
+  },
+  {
+    id: 5,
+    name: "Marcos Cordeiro",
+    role: "CEO Farmacon",
+    quote: "Acreditamos que o sucesso\nde cada cliente é a verdadeira\nmétrica do nosso próprio\ncrescimento e evolução.",
+    image: "/diretoria/bg-frases (4).webp",
+    thumb: "/diretoria/bg-frases (4).webp",
     social: "LinkedIn"
   }
 ];
@@ -66,18 +75,12 @@ const SobreDiretoria = () => {
         
         {/* Title for mobile, outside the card */}
         <div className="md:hidden mb-8">
-          <SectionHeader
-            badgeIcon={<Users size={14} />}
-            badgeText="Diretoria"
-            titleLines={[
-              "As mentes que",
-              "constroem o",
-              "futuro do varejo",
-              "farmacêutico."
-            ]}
-            align="left"
-            className="!mb-0"
-          />
+          <div className="flex items-center gap-2 mb-4">
+            <span className="flex items-center gap-2 bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">
+              <Users size={14} />
+              Diretoria
+            </span>
+          </div>
         </div>
 
         <div className="h-[650px] lg:h-[600px] w-full relative bg-slate-900 rounded-3xl overflow-hidden text-white flex flex-col justify-between">
@@ -108,27 +111,24 @@ const SobreDiretoria = () => {
         
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8 pointer-events-auto mb-6 md:mb-0">
-          {/* Main Statement (Desktop Only) */}
-          <div className="hidden md:block w-full md:w-[45%] lg:w-[35%]">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight md:leading-snug">
-              As mentes que constroem o futuro do varejo farmacêutico.
-            </h2>
-          </div>
-
-          {/* Changing Quote */}
-          <div className="w-full md:w-[30%] lg:w-[25%] md:text-right md:pt-2">
+          {/* Main Statement / Animated Quote on Left */}
+          <div className="w-full md:w-[70%] lg:w-[60%]">
             <AnimatePresence mode="wait">
-              <m.p
+              <m.h2
                 key={activeDir.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4 }}
-                className="text-[14px] md:text-lg font-light text-white/90 leading-relaxed italic md:not-italic"
+                className="text-xl md:text-3xl lg:text-4xl font-medium tracking-tight leading-tight md:leading-snug text-white whitespace-pre-line"
               >
                 "{activeDir.quote}"
-              </m.p>
+              </m.h2>
             </AnimatePresence>
+          </div>
+          
+          {/* Right side is now empty per requirements */}
+          <div className="w-full md:w-[30%] lg:w-[25%] md:text-right md:pt-2">
           </div>
         </div>
 
@@ -170,31 +170,11 @@ const SobreDiretoria = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 items-end border-t border-white/20 pt-5 md:pt-6">
             
             <div className="flex flex-col">
-              <AnimatePresence mode="wait">
-                <m.div
-                  key={activeDir.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-[1.3rem] md:text-2xl font-medium tracking-tight whitespace-nowrap">{activeDir.name}</span>
-                </m.div>
-              </AnimatePresence>
+              <span className="text-[1.3rem] md:text-2xl font-medium tracking-tight whitespace-nowrap">{activeDir.name}</span>
             </div>
 
             <div className="hidden md:flex flex-col items-center text-center">
-              <AnimatePresence mode="wait">
-                <m.div
-                  key={activeDir.id}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-sm md:text-base font-medium text-white/70 uppercase tracking-wider">{activeDir.role}</span>
-                </m.div>
-              </AnimatePresence>
+              <span className="text-sm md:text-base font-medium text-white/70 uppercase tracking-wider">{activeDir.role}</span>
             </div>
 
             <div className="flex flex-col items-end text-right">

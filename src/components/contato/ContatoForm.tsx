@@ -113,9 +113,9 @@ export default function ContatoForm() {
                     Deseja continuar o atendimento pelo WhatsApp ou permanecer no site?
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm mx-auto">
+                <div className="mt-4 flex flex-col gap-2 w-full">
                     <a 
-                        href="https://wa.me/5521971807881?text=Ol%C3%A1%2C%20acabei%20de%20preencher%20o%20formul%C3%A1rio%20no%20site%20e%20gostaria%20de%20continuar%20o%20atendimento!" 
+                        href="https://wa.me/551131635000?text=Ol%C3%A1%2C%20acabei%20de%20preencher%20o%20formul%C3%A1rio%20no%20site%20e%20gostaria%20de%20continuar%20o%20atendimento!" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white font-semibold hover:bg-[#20bd5a] transition-colors shadow-sm shadow-[#25D366]/20"

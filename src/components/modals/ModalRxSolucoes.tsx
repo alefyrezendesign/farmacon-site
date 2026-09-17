@@ -238,7 +238,7 @@ export default function ModalRxSolucoes() {
                                         <p className="text-slate-300 text-[13px] mb-3">
                                             Se preferir, chame nosso time agora no WhatsApp:
                                         </p>
-                                        <a href={`https://wa.me/5521998689659?text=${encodeURIComponent(form.interest ? `Olá, vim pelo site, já me cadastrei e tenho interesse em saber mais sobre ${form.interest} da RX Soluções.` : `Olá, vim pelo site, já me cadastrei e tenho interesse em conhecer melhor as soluções da RX Soluções.`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full gap-2 px-4 py-3 bg-[#25D366] text-white rounded-xl font-bold text-[14px] hover:bg-[#20bd5a] transition-colors cursor-pointer">
+                                        <a href={`https://wa.me/551131635000?text=${encodeURIComponent(form.interest ? `Olá, vim pelo site, já me cadastrei e tenho interesse em saber mais sobre ${form.interest} da RX Soluções.` : `Olá, vim pelo site, já me cadastrei e tenho interesse em conhecer melhor as soluções da RX Soluções.`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full gap-2 px-4 py-3 bg-[#25D366] text-white rounded-xl font-bold text-[14px] hover:bg-[#20bd5a] transition-colors cursor-pointer">
                                             Conversar no WhatsApp
                                         </a>
                                     </div>
