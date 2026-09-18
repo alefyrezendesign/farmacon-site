@@ -125,7 +125,6 @@ const CarrosselParceiros = () => {
             onLoad={i === 0 ? measure1 : undefined}
             draggable={false} decoding="async"
             className="h-8 sm:h-10 lg:h-12 xl:h-14 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
-            width="300" height="300"
           />
         ))}
       </div>
@@ -143,7 +142,6 @@ const CarrosselParceiros = () => {
             onLoad={i === 0 ? measure2 : undefined}
             draggable={false} decoding="async"
             className="h-8 sm:h-10 lg:h-12 xl:h-14 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
-            width="300" height="300"
           />
         ))}
       </div>
@@ -161,7 +159,6 @@ const CarrosselParceiros = () => {
             onLoad={i === 0 ? measure3 : undefined}
             draggable={false} decoding="async"
             className="h-8 sm:h-10 lg:h-12 xl:h-14 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
-            width="300" height="300"
           />
         ))}
       </div>

@@ -107,9 +107,15 @@ const Depoimentos = () => {
             <SectionHeader
               badgeIcon={<Handshake className="w-3.5 h-3.5" />}
               badgeText="Vem ser Farmacon"
-              titleLines={["3 novas farmácias", "por dia confiam", "em nossa expertise"]}
+              title={
+                <>
+                  3 novas farmácias<br />
+                  por dia confiam<br />
+                  em nossa expertise
+                </>
+              }
               align="left"
-              className="mb-0 md:mb-0 [&_h2]:max-w-none [&_h2]:mb-0 lg:[&_h2]:mb-6"
+              className="mb-0 md:mb-0 [&_h2]:mb-0 lg:[&_h2]:mb-6 lg:[&_h2]:text-[2.75rem]"
             />
           </div>
           

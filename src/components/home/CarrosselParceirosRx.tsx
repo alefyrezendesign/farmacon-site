@@ -123,7 +123,6 @@ const CarrosselParceirosRx = () => {
             onLoad={i === 0 ? measure1 : undefined}
             draggable={false}
             className="h-12 sm:h-16 lg:h-20 xl:h-24 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
-            width="400" height="200"
           />
         ))}
       </div>
@@ -141,7 +140,6 @@ const CarrosselParceirosRx = () => {
             onLoad={i === 0 ? measure2 : undefined}
             draggable={false}
             className="h-12 sm:h-16 lg:h-20 xl:h-24 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
-            width="400" height="200"
           />
         ))}
       </div>
@@ -159,7 +157,6 @@ const CarrosselParceirosRx = () => {
             onLoad={i === 0 ? measure3 : undefined}
             draggable={false}
             className="h-12 sm:h-16 lg:h-20 xl:h-24 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
-            width="400" height="200"
           />
         ))}
       </div>
