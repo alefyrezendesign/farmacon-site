@@ -145,7 +145,7 @@ const NumerosAutoridade = () => {
     <section 
       id="sobre-nos" 
       className="relative z-20 bg-[#2563eb] bg-cover bg-center w-full shadow-[0_-20px_60px_rgba(0,0,0,0.06)] lg:min-h-screen py-20 lg:py-0 overflow-hidden lg:flex lg:flex-col lg:justify-center"
-      style={{ backgroundImage: "url('/background/bg-azul.png')" }}
+      style={{ backgroundImage: "url('/background/bg-azul.webp')" }}
     >
       <div className="container mx-auto px-5 md:px-10 xl:px-16 lg:h-full relative z-10">
         <div className="w-full max-w-7xl mx-auto lg:h-full">
