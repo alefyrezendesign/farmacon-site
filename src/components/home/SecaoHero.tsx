@@ -533,8 +533,8 @@ type ScrollWordProps = {
 };
 
 const ScrollWord = ({ children, progress, range, isHighlight }: ScrollWordProps) => {
-  // Gray to blue transition. Start with slate-400 (#94A3B8) for WCAG 3:1 contrast on white
-  const color = useTransform(progress, range, ["#94A3B8", "#2563EB"]);
+  // Gray to blue transition. Start with slate-600 (#475569) for better WCAG contrast on white
+  const color = useTransform(progress, range, ["#475569", "#2563EB"]);
   
   return (
     <m.span 

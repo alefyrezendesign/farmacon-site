@@ -145,7 +145,7 @@ const Depoimentos = () => {
                       transition={{ duration: 0.3 }}
                       className="flex flex-col justify-center"
                     >
-                      <h4 className="font-bold text-dark-900 text-sm">{writtenTestimonials[textCurrent].name}</h4>
+                      <div className="font-bold text-dark-900 text-sm">{writtenTestimonials[textCurrent].name}</div>
                       <p className="text-xs text-surface-500">{writtenTestimonials[textCurrent].pharmacy}</p>
                     </m.div>
                   </AnimatePresence>
@@ -228,7 +228,7 @@ const Depoimentos = () => {
                 {/* Text Info */}
                 <div className={`absolute inset-x-0 bottom-0 p-6 text-left transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 delay-0 pointer-events-none'}`}>
                   <div className="w-[240px] xl:w-[280px]">
-                    <h4 className="text-2xl font-extrabold text-white mb-1.5 drop-shadow-md leading-tight">{video.name}</h4>
+                    <div className="text-2xl font-extrabold text-white mb-1.5 drop-shadow-md leading-tight">{video.name}</div>
                     {video.pharmacy && (
                       <p className="text-base font-bold text-white mb-2 drop-shadow-md leading-tight">
                         {video.pharmacy}
@@ -292,7 +292,7 @@ const Depoimentos = () => {
                 
                 {/* Text Info */}
                 <div className={`absolute inset-x-0 bottom-0 p-5 text-left transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 delay-0 pointer-events-none'}`}>
-                  <h4 className="text-xl font-extrabold text-white mb-1 drop-shadow-md leading-tight">{video.name}</h4>
+                  <div className="text-xl font-extrabold text-white mb-1 drop-shadow-md leading-tight">{video.name}</div>
                   {video.pharmacy && (
                     <p className="text-sm font-bold text-white mb-1.5 drop-shadow-md leading-tight">
                       {video.pharmacy}
