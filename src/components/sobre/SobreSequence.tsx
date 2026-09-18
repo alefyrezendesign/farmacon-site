@@ -5,7 +5,7 @@ const FRAME_COUNT = 88; // 0000 to 0087
 
 // Pad number to 4 digits (e.g. 0 -> 0000, 1 -> 0001)
 const currentFrame = (index: number) => 
-  `/background/sobre-bg/timeline-bg-frame/line-gradient${index.toString().padStart(4, '0')}.jpg`;
+  `/background/sobre-bg/timeline-bg-frame/line-gradient${index.toString().padStart(4, '0')}.webp`;
 
 const SobreSequence = () => {
   const containerRef = useRef<HTMLDivElement>(null);
