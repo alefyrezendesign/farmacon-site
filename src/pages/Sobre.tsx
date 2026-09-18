@@ -1,6 +1,5 @@
 import SobreHero from '../components/sobre/SobreHero';
 import SobreHistoria from '../components/sobre/SobreHistoria';
-import SobreSequence from '../components/sobre/SobreSequence';
 import SobreNumeros from '../components/sobre/SobreNumeros';
 import SobreVideoCTA from '../components/sobre/SobreVideoCTA';
 import SobreVisao from '../components/sobre/SobreVisao';
@@ -17,7 +16,6 @@ const Sobre = () => {
     <div className="bg-white min-h-screen relative overflow-clip">
       <SobreHero />
       <SobreHistoria />
-      <SobreSequence />
       <SobreTimeline />
       <SobreNumeros />
       <SobreVideoCTA />
