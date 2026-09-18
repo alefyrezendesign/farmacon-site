@@ -47,6 +47,7 @@ const ContatoMapa = () => {
               allowFullScreen={false} 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
+              tabIndex={-1}
               className="absolute inset-0 grayscale-[20%] contrast-125 opacity-90 mix-blend-multiply"
               title="Mapa da Matriz Itaboraí"
             ></iframe>

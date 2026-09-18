@@ -4,10 +4,13 @@ import { MapPin, MessageCircle, ChevronDown } from 'lucide-react';
 
 const AddressAccordion = ({ title, content }: { title: string, content: React.ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const id = `accordion-${title.toLowerCase().replace(/\s+/g, '-')}`;
     return (
         <div className="w-full">
             <button 
                 onClick={() => setIsOpen(!isOpen)}
+                aria-expanded={isOpen}
+                aria-controls={id}
                 className="w-fit flex items-center gap-8 py-2 text-left transition-colors focus:outline-none group"
             >
                 <div className="flex items-center gap-3">
@@ -21,6 +24,7 @@ const AddressAccordion = ({ title, content }: { title: string, content: React.Re
                 </div>
             </button>
             <div 
+                id={id}
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
             >
                 <div className="pb-3 text-sm text-slate-400 leading-relaxed mt-1">
@@ -237,10 +241,10 @@ const Rodape = () => {
 
                 {/* Linha Inferior */}
                 <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-slate-500 text-[13px]">
+                    <p className="text-slate-400 text-[13px]">
                         Copyright © {new Date().getFullYear()} - Farmacon Contabilidade LTDA
                     </p>
-                    <p className="text-slate-500 text-[13px]">
+                    <p className="text-slate-400 text-[13px]">
                         CNPJ: 26.690.384/0001-05
                     </p>
                 </div>

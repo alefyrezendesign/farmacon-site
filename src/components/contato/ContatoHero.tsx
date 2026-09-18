@@ -86,9 +86,9 @@ const ContatoHero = () => {
             {/* Mobile Photos (Above text) */}
             <span className="md:hidden flex justify-center w-full mb-2">
               <span className="inline-flex items-center bg-surface-50 rounded-full p-1 border border-surface-200 shadow-sm">
-                <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-11 h-11 rounded-full border-[3px] border-white object-cover" />
-                <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-11 h-11 rounded-full border-[3px] border-white object-cover -ml-4" />
-                <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-11 h-11 rounded-full border-[3px] border-white object-cover -ml-4" />
+                <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" loading="lazy" className="w-11 h-11 rounded-full border-[3px] border-white object-cover" />
+                <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" loading="lazy" className="w-11 h-11 rounded-full border-[3px] border-white object-cover -ml-4" />
+                <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" loading="lazy" className="w-11 h-11 rounded-full border-[3px] border-white object-cover -ml-4" />
                 <div className="w-11 h-11 rounded-full border-[3px] border-white bg-dark-900 text-white flex items-center justify-center -ml-4 text-base font-medium z-10 shadow-sm">
                   +
                 </div>
@@ -100,9 +100,9 @@ const ContatoHero = () => {
             
             {/* Desktop Photos (Between text) */}
             <span className="hidden md:inline-flex items-center mx-2 bg-surface-50 rounded-full p-1.5 border border-surface-200 shadow-sm align-middle">
-              <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover" />
-              <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
-              <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
+              <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" loading="lazy" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover" />
+              <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" loading="lazy" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
+              <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" loading="lazy" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white object-cover -ml-4" />
               <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-white bg-dark-900 text-white flex items-center justify-center -ml-4 text-xl font-medium z-10 shadow-sm">
                 +
               </div>

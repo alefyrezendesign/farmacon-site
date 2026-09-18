@@ -26,7 +26,6 @@ export const AnimatedTitle = ({ lines, className = '', delay = 0 }: AnimatedTitl
               duration: 0.8
             }}
             className="block"
-            aria-hidden="true"
             style={{ willChange: "transform, opacity" }}
           >
             {line}

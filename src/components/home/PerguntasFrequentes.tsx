@@ -68,7 +68,7 @@ const PerguntasFrequentes = () => {
                       <m.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.25 }}
-                        className={`flex-shrink-0 p-1.5 rounded-full ${isOpen ? 'bg-primary-50 text-primary-600' : 'bg-surface-50 text-surface-400'}`}
+                        className={`flex-shrink-0 p-1.5 rounded-full ${isOpen ? 'bg-primary-50 text-primary-600' : 'bg-surface-50 text-surface-500'}`}
                       >
                         <ChevronDown size={18} />
                       </m.div>

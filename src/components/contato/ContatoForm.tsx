@@ -202,7 +202,7 @@ export default function ContatoForm() {
                                 <option value="" disabled>UF</option>
                                 {ESTADOS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
                             </select>
-                            <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-surface-400 pointer-events-none" />
+                            <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-surface-500 pointer-events-none" />
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,7 @@ export default function ContatoForm() {
                             <option value="" disabled>Selecione seu momento atual</option>
                             {MOMENTOS.map(m => <option key={m} value={m}>{m}</option>)}
                         </select>
-                        <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-surface-400 pointer-events-none" />
+                        <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-surface-500 pointer-events-none" />
                     </div>
                 </div>
 

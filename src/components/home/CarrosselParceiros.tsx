@@ -76,8 +76,7 @@ const CarrosselParceiros = () => {
       offset1Ref.current += BASE_SPEED * (-directionRef.current) * dt;
       const w1 = w1Ref.current;
       if (w1 > 0) {
-        while (offset1Ref.current <= -w1) offset1Ref.current += w1;
-        while (offset1Ref.current >= 0) offset1Ref.current -= w1;
+        offset1Ref.current = ((offset1Ref.current % w1) - w1) % w1;
       }
       if (track1Ref.current) track1Ref.current.style.transform = `translateX(${offset1Ref.current}px)`;
 
@@ -85,8 +84,7 @@ const CarrosselParceiros = () => {
       offset2Ref.current += BASE_SPEED * directionRef.current * dt;
       const w2 = w2Ref.current;
       if (w2 > 0) {
-        while (offset2Ref.current <= -w2) offset2Ref.current += w2;
-        while (offset2Ref.current >= 0) offset2Ref.current -= w2;
+        offset2Ref.current = ((offset2Ref.current % w2) - w2) % w2;
       }
       if (track2Ref.current) track2Ref.current.style.transform = `translateX(${offset2Ref.current}px)`;
 
@@ -94,8 +92,7 @@ const CarrosselParceiros = () => {
       offset3Ref.current += BASE_SPEED * (-directionRef.current) * dt;
       const w3 = w3Ref.current;
       if (w3 > 0) {
-        while (offset3Ref.current <= -w3) offset3Ref.current += w3;
-        while (offset3Ref.current >= 0) offset3Ref.current -= w3;
+        offset3Ref.current = ((offset3Ref.current % w3) - w3) % w3;
       }
       if (track3Ref.current) track3Ref.current.style.transform = `translateX(${offset3Ref.current}px)`;
 
@@ -126,7 +123,7 @@ const CarrosselParceiros = () => {
             src={IMG_1}
             alt="Clientes Farmacon"
             onLoad={i === 0 ? measure1 : undefined}
-            draggable={false}
+            draggable={false} decoding="async"
             className="h-8 sm:h-10 lg:h-12 xl:h-14 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
           />
         ))}
@@ -143,7 +140,7 @@ const CarrosselParceiros = () => {
             src={IMG_2}
             alt="Clientes Farmacon"
             onLoad={i === 0 ? measure2 : undefined}
-            draggable={false}
+            draggable={false} decoding="async"
             className="h-8 sm:h-10 lg:h-12 xl:h-14 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
           />
         ))}
@@ -160,7 +157,7 @@ const CarrosselParceiros = () => {
             src={IMG_3}
             alt="Clientes Farmacon"
             onLoad={i === 0 ? measure3 : undefined}
-            draggable={false}
+            draggable={false} decoding="async"
             className="h-8 sm:h-10 lg:h-12 xl:h-14 max-w-none object-contain select-none pointer-events-none flex-shrink-0"
           />
         ))}

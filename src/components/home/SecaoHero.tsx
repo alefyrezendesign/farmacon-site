@@ -204,7 +204,7 @@ const SecaoHero = () => {
                     <div className="w-8 h-8 rounded-full flex items-center justify-center bg-primary-50 text-primary-600">
                       <DollarSign size={16} strokeWidth={2.5} />
                     </div>
-                    <div className={`px-2.5 py-1 rounded-full text-[8.5px] font-bold uppercase tracking-widest transition-all duration-700 ${isOptimized ? 'bg-primary-50 text-primary-600' : 'bg-surface-100 text-surface-400 grayscale'}`}>
+                    <div className={`px-2.5 py-1 rounded-full text-[8.5px] font-bold uppercase tracking-widest transition-all duration-700 ${isOptimized ? 'bg-primary-50 text-primary-600' : 'bg-surface-100 text-surface-500 grayscale'}`}>
                       Créditos Recuperados
                     </div>
                   </div>
@@ -362,7 +362,7 @@ const SecaoHero = () => {
                     <div className="w-8 h-8 rounded-full flex items-center justify-center bg-green-50 text-green-600">
                       <TrendingDown size={16} strokeWidth={2.5} />
                     </div>
-                    <div className={`px-2.5 py-1 rounded-full text-[8.5px] font-bold uppercase tracking-widest transition-all duration-700 ${isOptimized ? 'bg-green-50 text-green-700' : 'bg-surface-100 text-surface-400 grayscale'}`}>
+                    <div className={`px-2.5 py-1 rounded-full text-[8.5px] font-bold uppercase tracking-widest transition-all duration-700 ${isOptimized ? 'bg-green-50 text-green-700' : 'bg-surface-100 text-surface-500 grayscale'}`}>
                       Média de redução
                     </div>
                   </div>
@@ -533,8 +533,8 @@ type ScrollWordProps = {
 };
 
 const ScrollWord = ({ children, progress, range, isHighlight }: ScrollWordProps) => {
-  // Gray to blue transition
-  const color = useTransform(progress, range, ["#E2E8F0", "#2563EB"]);
+  // Gray to blue transition. Start with slate-400 (#94A3B8) for WCAG 3:1 contrast on white
+  const color = useTransform(progress, range, ["#94A3B8", "#2563EB"]);
   
   return (
     <m.span 

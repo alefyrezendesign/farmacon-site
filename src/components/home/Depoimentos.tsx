@@ -228,11 +228,11 @@ const Depoimentos = () => {
                 {/* Text Info */}
                 <div className={`absolute inset-x-0 bottom-0 p-6 text-left transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 delay-0 pointer-events-none'}`}>
                   <div className="w-[240px] xl:w-[280px]">
-                    <h1 className="text-2xl font-extrabold text-white mb-1.5 drop-shadow-md leading-tight">{video.name}</h1>
+                    <h4 className="text-2xl font-extrabold text-white mb-1.5 drop-shadow-md leading-tight">{video.name}</h4>
                     {video.pharmacy && (
-                      <h3 className="text-base font-bold text-white mb-2 drop-shadow-md leading-tight">
+                      <p className="text-base font-bold text-white mb-2 drop-shadow-md leading-tight">
                         {video.pharmacy}
-                      </h3>
+                      </p>
                     )}
                     <p className="text-[13px] font-medium text-white drop-shadow-md leading-relaxed">{video.desc}</p>
                   </div>
@@ -292,11 +292,11 @@ const Depoimentos = () => {
                 
                 {/* Text Info */}
                 <div className={`absolute inset-x-0 bottom-0 p-5 text-left transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 delay-0 pointer-events-none'}`}>
-                  <h1 className="text-xl font-extrabold text-white mb-1 drop-shadow-md leading-tight">{video.name}</h1>
+                  <h4 className="text-xl font-extrabold text-white mb-1 drop-shadow-md leading-tight">{video.name}</h4>
                   {video.pharmacy && (
-                    <h3 className="text-sm font-bold text-white mb-1.5 drop-shadow-md leading-tight">
+                    <p className="text-sm font-bold text-white mb-1.5 drop-shadow-md leading-tight">
                       {video.pharmacy}
-                    </h3>
+                    </p>
                   )}
                   <p className="text-xs font-medium text-white drop-shadow-md leading-relaxed">{video.desc}</p>
                 </div>
