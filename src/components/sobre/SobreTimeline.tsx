@@ -307,7 +307,7 @@ const SobreTimeline = () => {
       className="relative bg-white overflow-clip"
       style={{ height: sectionHeight }}
     >
-      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex items-center overflow-hidden pt-40 pb-16 lg:pt-0 lg:pb-0 px-4 md:px-10 lg:px-0">
+      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex items-center overflow-hidden pt-12 pb-16 lg:pt-0 lg:pb-0 px-4 md:px-10 lg:px-0">
         
         {/* Background Image */}
         <div 

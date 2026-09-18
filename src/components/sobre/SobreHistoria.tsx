@@ -29,7 +29,7 @@ const SobreHistoria = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="pt-12 pb-16 md:pt-32 md:pb-24 bg-white relative overflow-hidden flex items-center"
+      className="pt-12 pb-4 md:pt-32 md:pb-8 bg-white relative overflow-hidden flex items-center"
     >
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10 w-full">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center w-full">
