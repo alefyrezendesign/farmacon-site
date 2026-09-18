@@ -3,7 +3,7 @@ import { useMotionValueEvent, MotionValue } from 'framer-motion';
 
 const FRAME_COUNT = 58;
 const FRAME_PREFIX = '/background/frame-bg-world/world-bruto';
-const FRAME_SUFFIX = '.jpg';
+const FRAME_SUFFIX = '.webp';
 
 const padZero = (num: number) => num.toString().padStart(3, '0');
 
